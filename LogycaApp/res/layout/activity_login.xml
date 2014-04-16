@@ -25,6 +25,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
                 android:clickable="false"
+                android:contentDescription="@string/logo_description"
                 android:maxWidth="@dimen/activity_horizontal_margin"
                 android:src="@drawable/logo" />
 
@@ -109,10 +110,11 @@
               android:layout_height="wrap_content"
               android:layout_marginBottom="6dp"
               android:text="@string/btn_text_login_twitter"
-              android:textSize="20sp" />
+              android:textSize="20sp" 
+              android:drawableLeft="@drawable/twitter_wt"/>
 
-          <Button
-              android:id="@+id/button1"
+          <com.google.android.gms.common.SignInButton
+              android:id="@+id/btnGoogle"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginBottom="6dp"
@@ -124,7 +126,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:text="@string/btn_text_login_facebook"
-              android:textSize="20sp" />
+              android:textSize="20sp"
+              android:drawableLeft="@drawable/facebook_wt" />
 
           <TextView
               android:id="@+id/link_to_register"
