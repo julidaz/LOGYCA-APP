@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Logyca</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings for splash -->
+    <string name="splash_legend">logística y cadena de valor</string>
+    <!-- Strings for login -->
+    <string name="login_title">Login</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="text_password">Contraseña</string>
+    <string name="text_email">Email</string>
+    <string name="btn_text_login">Ingreso</string>
+    <string name="btn_text_login_twitter">Ingresso con Twitter</string>
+    <string name="btn_text_login_google">Ingreso con Google+</string>
+    <string name="btn_text_login_facebook">Ingreso con Facebook</string>
+    <string name="signup_text">Registro</string>
+    <!-- For facebook login -->
+    <string name="app_id">230149700525442</string>
+    
+</resources>
