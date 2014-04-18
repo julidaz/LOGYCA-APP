@@ -10,7 +10,7 @@
     tools:context="com.logyca.MainActivity$PlaceholderFragment" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/rNFCreaderTittle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -24,7 +24,7 @@
         android:id="@+id/big_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/rNFCreaderTittle"
         android:layout_alignParentTop="true"
         android:layout_marginTop="85dp"
         android:src="@drawable/logo" />

@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.logyca.NFCReaderActivity$PlaceholderFragment" >
+
+    <RelativeLayout
+        android:id="@+id/NFCwebContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <WebView
+            android:id="@+id/webNFCView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/orangeNFCbackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/orange" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/rNFCreaderTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/NFC_reader_tittle"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:id="@+id/NFCLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-40dp"
+                android:src="@drawable/nfc_white" />
+
+            <TextView
+                android:id="@+id/NFC_placeholder_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    
+    <!-- WEB view for pages -->
+
+</RelativeLayout>

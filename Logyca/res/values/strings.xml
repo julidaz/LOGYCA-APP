@@ -19,5 +19,7 @@
     <string name="signup_text">Registro</string>
     <!-- For facebook login -->
     <string name="app_id">230149700525442</string>
-    
+    <string name="title_activity_nfcreader">NFCReaderActivity</string>
+    <string name="NFC_reader_tittle">Lector de Tags NFC</string>
+
 </resources>
