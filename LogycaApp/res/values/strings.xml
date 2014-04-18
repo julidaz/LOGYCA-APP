@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- General -->
+
+    <!-- General -->
     <string name="app_name">Logyca App</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -18,4 +19,12 @@
     <string name="btn_text_login_google">Ingreso con Google+</string>
     <string name="btn_text_login_facebook">Ingreso con Facebook</string>
     <string name="signup_text">Registro</string>
+    <string name="title_activity_news">NewsActivity</string>
+    <string name="title_newsactivity_list">News</string>
+    <string name="title_newsactivity_detail">NewsActivity Detail</string>
+    <string name="text_news">Noticias</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_trends">TrendsActivity</string>
+    <string name="text_trends">Tendencias</string>
+
 </resources>
