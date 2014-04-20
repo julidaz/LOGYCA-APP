@@ -43,56 +43,56 @@ public class NewsActivity extends Activity {
 	}
 	
 	private void getNewsFromWS() {
-		//Constantes para la invocacion del web service
-		String NAMESPACE = "http://tempuri.org/";
-		String URL="http://192.168.0.231/EjemploWS/Service.asmx";
-		String METHOD_NAME = "getAllAndroidOS";
-		String SOAP_ACTION ="http://tempuri.org/getAllAndroidOS";
-
-		//Declaracion de variables para consuymir el web service
-		SoapObject request=null;
-		SoapSerializationEnvelope envelope=null;
-		SoapPrimitive  resultsRequestSOAP=null;
-//		Se crea un objeto SoapObject para poder realizar la peticion
-//		para consumir el ws SOAP. El constructor recibe
-//		el namespace. Por lo regular el namespace es el dominio
-//		donde se encuentra el web service
-		request = new SoapObject(NAMESPACE, METHOD_NAME);
-		request.addProperty("user", "pepe");
-
-//		Se crea un objeto SoapSerializationEnvelope para serealizar la
-//		peticion SOAP y permitir viajar el mensaje por la nube
-//		el constructor recibe la version de SOAP
-		envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-		envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
-
-		//Se envuelve la peticion soap
-		envelope.setOutputSoapObject(request);
-
-		//Objeto que representa el modelo de transporte
-		//Recibe la URL del ws
-		HttpTransportSE transporte = new HttpTransportSE(URL);
-
-		try {
-			//Hace la llamada al ws
-			transporte.call(SOAP_ACTION, envelope);
-
-			//Se crea un objeto SoapPrimitive y se obtiene la respuesta
-			//de la peticion
-			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (XmlPullParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		//Almacenamos el resultado en un String ya que lo que represa
-		//el ws es una cadena json, representando una lista AndroidOS
-		//de objetos del tipo
-		this.newsJson = resultsRequestSOAP.toString();
+//		//Constantes para la invocacion del web service
+//		String NAMESPACE = "http://tempuri.org/";
+//		String URL="http://192.168.0.231/EjemploWS/Service.asmx";
+//		String METHOD_NAME = "getAllAndroidOS";
+//		String SOAP_ACTION ="http://tempuri.org/getAllAndroidOS";
+//
+//		//Declaracion de variables para consuymir el web service
+//		SoapObject request=null;
+//		SoapSerializationEnvelope envelope=null;
+//		SoapPrimitive  resultsRequestSOAP=null;
+////		Se crea un objeto SoapObject para poder realizar la peticion
+////		para consumir el ws SOAP. El constructor recibe
+////		el namespace. Por lo regular el namespace es el dominio
+////		donde se encuentra el web service
+//		request = new SoapObject(NAMESPACE, METHOD_NAME);
+//		request.addProperty("user", "pepe");
+//
+////		Se crea un objeto SoapSerializationEnvelope para serealizar la
+////		peticion SOAP y permitir viajar el mensaje por la nube
+////		el constructor recibe la version de SOAP
+//		envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+//		envelope.dotNet = true; //se asigna true para el caso de que el WS sea de dotNet
+//
+//		//Se envuelve la peticion soap
+//		envelope.setOutputSoapObject(request);
+//
+//		//Objeto que representa el modelo de transporte
+//		//Recibe la URL del ws
+//		HttpTransportSE transporte = new HttpTransportSE(URL);
+//
+//		try {
+//			//Hace la llamada al ws
+//			transporte.call(SOAP_ACTION, envelope);
+//
+//			//Se crea un objeto SoapPrimitive y se obtiene la respuesta
+//			//de la peticion
+//			resultsRequestSOAP = (SoapPrimitive)envelope.getResponse();
+//
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (XmlPullParserException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		//Almacenamos el resultado en un String ya que lo que represa
+//		//el ws es una cadena json, representando una lista AndroidOS
+//		//de objetos del tipo
+//		this.newsJson = resultsRequestSOAP.toString();
 	}
 
 	private void loadNews() {
@@ -116,7 +116,7 @@ public class NewsActivity extends Activity {
 			final String descripcion=(String) auxNew.get("descripcionNoticia");
 			final String enlace= (String) auxNew.get("enlace");
 			LinearLayout lay=new LinearLayout(this);
-			lay.setBackgroundResource(R.drawable.ic_launcher);
+			lay.setBackgroundResource(R.drawable.noticia);
 			TextView title=new TextView(this);
 			title.setText(titulo);
 			TextView description=new TextView(this);
