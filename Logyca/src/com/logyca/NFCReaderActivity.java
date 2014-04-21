@@ -118,7 +118,9 @@ public class NFCReaderActivity extends Activity{
 		myLayout.setVisibility(View.VISIBLE);
 		mView.setWebViewClient(new WebViewClient());
 		mView.loadUrl("http://"+tag_text);
-		//mView.getSettings().setJavaScriptEnabled(true);
+		mView.getSettings().setJavaScriptEnabled(true);
+		mView.getSettings().setBuiltInZoomControls(false);
+		mView.getSettings().setSupportZoom(true);
 		Log.d("TAG","TICK "+ tag_text );
 	}
 
