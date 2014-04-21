@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-40dp"
+                android:contentDescription="Close btn"
                 android:src="@drawable/nfc_white" />
 
             <TextView
@@ -67,12 +68,16 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.52" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/wbClosebtn"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="Cerrar" 
-                android:onClick="selfDestruct" />
+                android:layout_height="60dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="4dp"
+                android:onClick="selfDestruct"
+                android:src="@drawable/close" />
+
         </LinearLayout>
     </RelativeLayout>
 

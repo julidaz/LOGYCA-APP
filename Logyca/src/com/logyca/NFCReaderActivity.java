@@ -1,43 +1,31 @@
 package com.logyca;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
-import android.nfc.FormatException;
 import android.nfc.NdefMessage;
-import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.nfc.tech.MifareUltralight;
 import android.nfc.tech.Ndef;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Parcelable;
 import android.os.SystemClock;
-import android.text.TextWatcher;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
 
 public class NFCReaderActivity extends Activity{
 	NfcAdapter myNfcAdapter;
@@ -93,6 +81,10 @@ public class NFCReaderActivity extends Activity{
 	                    result += (char) payload[b];
 	                }
 	                Log.d("NFC", result);
+	                	// vibrate to notify the event
+	                	Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+	                	// Vibrate for 250 milliseconds
+	                	v.vibrate(250);
 	                text.setText("Tag encontrado." );
 		            SystemClock.sleep(500);
 		            loadTagWebView( result.substring(2) );
