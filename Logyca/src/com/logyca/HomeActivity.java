@@ -1,6 +1,7 @@
 package com.logyca;
 
 import android.app.Activity;
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,18 +10,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.os.Build;
 
-import com.facebook.*;
-import com.facebook.android.*;
+public class HomeActivity extends Activity {
 
-public class LoginActivity extends Activity{
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
-		
+		setContentView(R.layout.activity_home);
+
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
@@ -31,20 +29,8 @@ public class LoginActivity extends Activity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
+		getMenuInflater().inflate(R.menu.home, menu);
 		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.wvLayout) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	/**
@@ -58,8 +44,8 @@ public class LoginActivity extends Activity{
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_login,
-					container, false);
+			View rootView = inflater.inflate(R.layout.fragment_home, container,
+					false);
 			return rootView;
 		}
 	}
@@ -67,18 +53,24 @@ public class LoginActivity extends Activity{
 	public void selfDestruct(View view) {
 		Intent i;
 		switch (view.getId()) {
-		case R.id.btnLogin:
+		case R.id.btnTrends:
 			//Action for login button, rigth now we're going to use it for testing purpose in a nfc Activity call
-			i = new Intent(LoginActivity.this, HomeActivity.class );
+			i = new Intent(HomeActivity.this, TrendsActivity.class );
 			startActivity(i);
 			break;
-		case R.id.btnRegister:
+		case R.id.btnNFC:
 			// Action to register
-		    i = new Intent(LoginActivity.this, NFCReaderActivity.class );
+		    i = new Intent(HomeActivity.this, NFCReaderActivity.class );
 			startActivity(i);
 			break;
+		case R.id.btnNews:
+			// Action to register
+		    i = new Intent(HomeActivity.this, NewsActivity.class );
+			startActivity(i);
+			break; 
 		default:
 			break;
 		}
 	}
+
 }

@@ -21,5 +21,20 @@
     <string name="app_id">230149700525442</string>
     <string name="title_activity_nfcreader">NFCReaderActivity</string>
     <string name="NFC_reader_tittle">Lector de Tags NFC</string>
+    <!-- NEWS -->
+    <string name="title_activity_news">NewsActivity</string>
+    <string name="title_newsactivity_list">News</string>
+    <string name="title_newsactivity_detail">NewsActivity Detail</string>
+    <string name="text_news">Noticias</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_trends">TrendsActivity</string>
+    <string name="text_trends">Tendencias</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
 
 </resources>
