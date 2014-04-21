@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/logo_servicio" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Titulo Servicio"
+        android:id="@+id/tituloTv"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nunc ligula, feugiat ut accumsan id, ultricies eu lorem. Aenean dapibus, odio nec aliquam blandit, velit ante faucibus urna, et dapibus enim neque et nibh. Suspendisse vitae leo augue. Sed quis suscipit elit, sed gravida justo. Phasellus a suscipit ligula, at tempus ligula. Proin eget sagittis neque, vel dapibus tellus. Quisque laoreet iaculis risus, ut posuere ligula vehicula nec. Vestibulum eu vestibulum est. Phasellus condimentum eros ac bibendum feugiat. Vivamus hendrerit mauris non nisl aliquam, ac malesuada elit auctor. Duis mollis commodo ullamcorper. Sed molestie congue volutpat. Cras convallis metus a aliquam condimentum. Fusce tincidunt elit a lorem suscipit dignissim. Sed sed quam pretium, semper urna ac, ullamcorper erat. Cras pulvinar tincidunt augue, sit amet scelerisque odio elementum aliquam."
+        android:id="@+id/descripcionTv"
+        android:layout_below="@+id/tituloDescripcionTv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tipo Servicio"
+        android:id="@+id/tipoTv"
+        android:layout_below="@+id/tituloTv"
+        android:layout_toRightOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Desde"
+        android:id="@+id/desdeTv"
+        android:layout_below="@+id/tipoTv"
+        android:layout_toRightOf="@+id/imageView"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12/12/2013"
+        android:id="@+id/fechaDesdeTv"
+        android:layout_below="@+id/desdeTv"
+        android:layout_toRightOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Hasta"
+        android:id="@+id/hastaTv"
+        android:textStyle="bold"
+        android:layout_below="@+id/tipoTv"
+        android:layout_toRightOf="@+id/tipoTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="14/12/2014"
+        android:id="@+id/fechaHastaTv"
+        android:layout_below="@+id/hastaTv"
+        android:layout_toRightOf="@+id/tipoTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Hora"
+        android:id="@+id/horaTv"
+        android:layout_below="@+id/fechaDesdeTv"
+        android:layout_toRightOf="@+id/imageView"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12pm"
+        android:id="@+id/horaComienzoTv"
+        android:layout_below="@+id/fechaDesdeTv"
+        android:layout_toRightOf="@+id/desdeTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Duración"
+        android:id="@+id/duracionTv"
+        android:layout_below="@+id/fechaHastaTv"
+        android:layout_alignLeft="@+id/fechaHastaTv"
+        android:layout_alignStart="@+id/fechaHastaTv"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 hora"
+        android:id="@+id/tiempoDuracionTv"
+        android:layout_below="@+id/fechaHastaTv"
+        android:layout_toRightOf="@+id/fechaHastaTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/Descripcion"
+        android:id="@+id/tituloDescripcionTv"
+        android:layout_below="@+id/tituloResponsableTv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Direccion"
+        android:id="@+id/tituloDireccionTv"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Responsable"
+        android:id="@+id/tituloResponsableTv"
+        android:layout_below="@+id/tituloDireccionTv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fake St. 123"
+        android:id="@+id/direccionTv"
+        android:layout_above="@+id/tituloResponsableTv"
+        android:layout_toRightOf="@+id/tituloDireccionTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daniel Cárdenas"
+        android:id="@+id/responsableTv"
+        android:layout_alignTop="@+id/tituloResponsableTv"
+        android:layout_toRightOf="@+id/tituloResponsableTv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bogotá D.C."
+        android:id="@+id/ciudadTv"
+        android:layout_alignTop="@+id/direccionTv"
+        android:layout_toRightOf="@+id/direccionTv"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Colombia"
+        android:id="@+id/paisTv"
+        android:layout_alignTop="@+id/ciudadTv"
+        android:layout_toRightOf="@+id/ciudadTv"
+        android:layout_marginLeft="10dp" />
+
+
+</RelativeLayout>
+</ScrollView>
