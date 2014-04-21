@@ -28,14 +28,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class NFCReaderActivity extends Activity {
+public class NFCReaderActivity extends Activity{
 	NfcAdapter myNfcAdapter;
 	public static final String MIME_TEXT_PLAIN = "text/plain";
 	
@@ -45,7 +49,7 @@ public class NFCReaderActivity extends Activity {
 		setContentView(R.layout.activity_nfcreader);
 		
 		myNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-		 
+				
         if (myNfcAdapter == null) {
             // Stop here, we definitely need NFC
             Toast.makeText(this, "This device doesn't support NFC.", Toast.LENGTH_LONG).show();
@@ -60,7 +64,13 @@ public class NFCReaderActivity extends Activity {
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 	}
-
+	
+	public void selfDestruct(View view) {
+		//Action for login button, rigth now we're going to use it for testing purpose in a nfc Activity call
+		LinearLayout myLayout =(LinearLayout)findViewById(R.id.wvLayout);
+		myLayout.setVisibility(View.INVISIBLE);
+	}
+	
 	private void handleIntent(Intent intent) {
 	    String action = intent.getAction();
 	    if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
@@ -104,9 +114,11 @@ public class NFCReaderActivity extends Activity {
 		// TODO Auto-generated method stub
 		WebView mView = (WebView)findViewById(R.id.webNFCView);
 		//posible close button showup
-		mView.setVisibility(View.VISIBLE);
+		LinearLayout myLayout =(LinearLayout)findViewById(R.id.wvLayout);
+		myLayout.setVisibility(View.VISIBLE);
+		mView.setWebViewClient(new WebViewClient());
 		mView.loadUrl("http://"+tag_text);
-		mView.getSettings().setJavaScriptEnabled(true);
+		//mView.getSettings().setJavaScriptEnabled(true);
 		Log.d("TAG","TICK "+ tag_text );
 	}
 
@@ -155,7 +167,7 @@ public class NFCReaderActivity extends Activity {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.wvLayout) {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

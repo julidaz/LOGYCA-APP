@@ -6,19 +6,6 @@
     tools:context="com.logyca.NFCReaderActivity$PlaceholderFragment" >
 
     <RelativeLayout
-        android:id="@+id/NFCwebContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-        <WebView
-            android:id="@+id/webNFCView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/orangeNFCbackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,5 +48,32 @@
     </RelativeLayout>
     
     <!-- WEB view for pages -->
+
+    <RelativeLayout
+        android:id="@+id/NFCwebContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/wvLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <WebView
+                android:id="@+id/webNFCView"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.52" />
+
+            <Button
+                android:id="@+id/wbClosebtn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Cerrar" 
+                android:onClick="selfDestruct" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
