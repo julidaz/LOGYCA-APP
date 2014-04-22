@@ -1,5 +1,7 @@
 package com.logyca;
 
+import java.util.Arrays;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -81,4 +83,27 @@ public class LoginActivity extends Activity{
 			break;
 		}
 	}
+	
+	/**
+	 * Facebook login part
+	 * */
+	/*
+	private Session.StatusCallback statusCallback = new SessionStatusCallback();
+		private void onClickLogin() {
+		    Session session = Session.getActiveSession();
+		    if (!session.isOpened() && !session.isClosed()) {
+		        session.openForRead(new Session.OpenRequest(this)
+		            .setPermissions(Arrays.asList("basic_info"))
+		            .setCallback(statusCallback));
+		    } else {
+		        Session.openActiveSession(getActivity(), this, true, statusCallback);
+		    }
+		}
+		private class SessionStatusCallback implements Session.StatusCallback {
+		    @Override
+		    public void call(Session session, SessionState state, Exception exception) {
+		            // Respond to session state changes, ex: updating the view
+		    }
+		}
+	*/
 }

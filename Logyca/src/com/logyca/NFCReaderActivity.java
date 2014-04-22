@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
+import android.net.http.SslError;
 import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
@@ -21,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -108,13 +110,14 @@ public class NFCReaderActivity extends Activity{
 		//posible close button showup
 		LinearLayout myLayout =(LinearLayout)findViewById(R.id.wvLayout);
 		myLayout.setVisibility(View.VISIBLE);
-		//mView.setWebViewClient(new WebViewClient());
+		mView.setWebViewClient(new WebViewClient());
 		mView.loadUrl("http://"+tag_text);
 		mView.getSettings().setAllowFileAccessFromFileURLs(true);
 		mView.getSettings().setUserAgentString("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1944.0 Safari/537.36");
 		mView.getSettings().setJavaScriptEnabled(true);
 		mView.getSettings().setSupportZoom(true);
 		mView.getSettings().setBuiltInZoomControls(false);
+		mView.getSettings().setUseWideViewPort(true);
 		Log.d("TAG","TICK "+ tag_text );
 	}
 
