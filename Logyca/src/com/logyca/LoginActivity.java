@@ -74,7 +74,7 @@ public class LoginActivity extends Activity{
 			break;
 		case R.id.btnRegister:
 			// Action to register
-		    i = new Intent(LoginActivity.this, NFCReaderActivity.class );
+		    i = new Intent(LoginActivity.this, MainActivity.class );
 			startActivity(i);
 			break;
 		default:

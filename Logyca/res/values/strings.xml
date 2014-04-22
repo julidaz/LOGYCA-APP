@@ -36,5 +36,16 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
-
+    <!-- Android Studio -->
+    <string name="Servicios">Servicios</string>
+    <string name="Noticias">Noticias</string>
+    <string name="Tendencias">Tendencias</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Desde">Desde:</string>
+    <string name="Hasta">Hasta:</string>
+    <string name="Hora">Hora:</string>
+    <string name="Duración">Duración:</string>
+    <string name="Direccion">Dirección:</string>
+    <string name="Responsable">Responsable:</string>
+    <string name="Descripcion">Descripcion</string>
 </resources>

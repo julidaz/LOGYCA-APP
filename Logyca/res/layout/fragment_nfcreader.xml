@@ -42,7 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
@@ -70,6 +71,7 @@
 
             <ImageButton
                 android:id="@+id/wbClosebtn"
+                style="@style/ActionBar.Solid.Example"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="25dp"
