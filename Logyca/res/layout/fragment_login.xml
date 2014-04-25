@@ -27,6 +27,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
                 android:clickable="false"
+                android:contentDescription="@string/logo_description"
                 android:maxWidth="@dimen/activity_horizontal_margin"
                 android:src="@drawable/logo" 
                 android:focusable="true"
@@ -95,13 +96,35 @@
 
           <!-- Link to Registration Screen -->
 
+<<<<<<< HEAD:Logyca/res/layout/fragment_login.xml
           <com.facebook.widget.LoginButton
+=======
+          <Button
+              android:id="@+id/btnTwitter"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="6dp"
+              android:text="@string/btn_text_login_twitter"
+              android:textSize="20sp" 
+              android:drawableLeft="@drawable/twitter_wt"/>
+
+          <com.google.android.gms.common.SignInButton
+              android:id="@+id/btnGoogle"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="6dp"
+              android:text="@string/btn_text_login_google"
+              android:textSize="20sp" />
+
+          <Button
+>>>>>>> 0e902b832c067d4d6c7d84b14909a632d771bce0:LogycaApp/res/layout/activity_login.xml
               android:id="@+id/btnFacebook"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginBottom="20dp"
               android:text="@string/btn_text_login_facebook"
-              android:textSize="20sp" />
+              android:textSize="20sp"
+              android:drawableLeft="@drawable/facebook_wt" />
 
           <TextView
               android:id="@+id/link_to_register"
