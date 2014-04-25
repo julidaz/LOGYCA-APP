@@ -1,0 +1,20 @@
+<resources>
+
+   	<!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Example</item>
+    </style>
+
+    <style name="ActionBar.Solid.Example" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_solid_example</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_example</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_example</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Example</item>
+        <item name="android:icon">@drawable/logo_logyca</item>
+    </style>
+
+    <style name="ProgressBar.Example" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_example</item>
+    </style>
+</resources>
