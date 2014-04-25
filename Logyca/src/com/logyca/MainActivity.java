@@ -72,10 +72,8 @@ public class MainActivity extends Activity
                 nuevo = PlaceholderFragment.newInstance(position+1);
                 break;
             case 1:
-                nuevo = PlaceholderFragment.newInstance(position+1);
-            	i = new Intent(MainActivity.this, NewsActivity.class );
-    			startActivity(i);
-                break;
+            	nuevo= NoticiaFragment.newInstance(position+1);
+            	break;
             case 2:
                 nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, TrendsActivity.class );
@@ -161,6 +159,10 @@ public class MainActivity extends Activity
                 fragmentManager.beginTransaction().replace(R.id.container,detalle).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             case 1:
+            	//Mostrar el detalle de un servicio
+                NoticiaDescripcionFragment detalle2;
+                detalle2 = NoticiaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle2).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             default:
                 break;

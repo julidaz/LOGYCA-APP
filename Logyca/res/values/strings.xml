@@ -44,8 +44,9 @@
     <string name="Desde">Desde:</string>
     <string name="Hasta">Hasta:</string>
     <string name="Hora">Hora:</string>
-    <string name="Duración">Duración:</string>
+    <string name="Duracion">Duración:</string>
     <string name="Direccion">Dirección:</string>
     <string name="Responsable">Responsable:</string>
     <string name="Descripcion">Descripcion</string>
+    <string name="link">Link</string>
 </resources>
