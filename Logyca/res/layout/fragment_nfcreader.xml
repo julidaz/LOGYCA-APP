@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.logyca.NFCReaderActivity$PlaceholderFragment" >
+
+    <RelativeLayout
+        android:id="@+id/orangeNFCbackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/orange" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/rNFCreaderTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/NFC_reader_tittle"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:id="@+id/NFCLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-40dp"
+                android:contentDescription="Close btn"
+                android:src="@drawable/nfc_white" />
+
+            <TextView
+                android:id="@+id/NFC_placeholder_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    
+    <!-- WEB view for pages -->
+
+    <RelativeLayout
+        android:id="@+id/NFCwebContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/wvLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:visibility="invisible" >
+
+            <WebView
+                android:id="@+id/webNFCView"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.52" />
+
+            <ImageButton
+                android:id="@+id/wbClosebtn"
+                style="@style/ActionBar.Solid.Example"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="4dp"
+                android:onClick="selfDestruct"
+                android:src="@drawable/close" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
