@@ -49,4 +49,6 @@
     <string name="Responsable">Responsable:</string>
     <string name="Descripcion">Descripcion</string>
     <string name="link">Link</string>
+    <string name="title_activity_qrreader">QRReaderActivity</string>
+
 </resources>

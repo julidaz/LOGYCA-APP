@@ -85,7 +85,6 @@ public class LoginActivity extends Activity{
 	}
 	
 	public void selfDestruct(View view) {
-		Intent i;
 		switch (view.getId()) {
 		case R.id.btnLogin:
 			//Action for login button, rigth now we're going to use it for testing purpose in a nfc Activity call
@@ -141,10 +140,8 @@ public class LoginActivity extends Activity{
 			break;
 		case R.id.btnRegister:
 			// Action to register
-			/*
-		    i = new Intent(LoginActivity.this, MainActivity.class );
+			Intent i = new Intent(LoginActivity.this, QRReaderActivity.class );
 			startActivity(i);
-			*/
 			break;
 		default:
 			break;
