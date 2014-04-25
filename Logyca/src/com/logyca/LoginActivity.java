@@ -1,20 +1,33 @@
 package com.logyca;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Arrays;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.facebook.*;
 import com.facebook.android.*;
+import com.loopj.android.http.*;
 
 public class LoginActivity extends Activity{
 	
@@ -27,6 +40,7 @@ public class LoginActivity extends Activity{
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
+		 
 	}
 
 	@Override
@@ -71,13 +85,36 @@ public class LoginActivity extends Activity{
 		switch (view.getId()) {
 		case R.id.btnLogin:
 			//Action for login button, rigth now we're going to use it for testing purpose in a nfc Activity call
-			i = new Intent(LoginActivity.this, HomeActivity.class );
-			startActivity(i);
+			AsyncHttpClient client = new AsyncHttpClient();
+			//Data 
+			EditText user_edit = (EditText)findViewById(R.id.email_text);
+			EditText pssw_edit = (EditText)findViewById(R.id.password_text);
+			String USER = user_edit.getText().toString();
+			String PSSW = pssw_edit.getText().toString();
+			// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
+			String URL_complete = "http://www.colfuturo.org/movil/service.login.php";
+			RequestParams params = new RequestParams();
+			params.put("correo", USER);
+			params.put("clave", PSSW);
+			client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
+			    @Override
+			    public void onSuccess(String response) {
+			    	if (response.contains("resultadoLogin\":\"true\"")){
+			    		Log.i("HTTPGet",response);
+			    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
+					startActivity(i);}
+			    }
+			});  
+			//go to next intent
+			//i = new Intent(LoginActivity.this, HomeActivity.class );
+			//startActivity(i);
 			break;
 		case R.id.btnRegister:
 			// Action to register
+			/*
 		    i = new Intent(LoginActivity.this, MainActivity.class );
 			startActivity(i);
+			*/
 			break;
 		default:
 			break;
