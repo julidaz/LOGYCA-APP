@@ -50,5 +50,6 @@
     <string name="Descripcion">Descripcion</string>
     <string name="link">Link</string>
     <string name="title_activity_qrreader">QRReaderActivity</string>
+    <string name="qr_tittle">Lector de Códigos QR</string>
 
 </resources>

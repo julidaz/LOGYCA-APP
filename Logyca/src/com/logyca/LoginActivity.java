@@ -132,7 +132,7 @@ public class LoginActivity extends Activity{
 			}
 			//Validation for empty values in the fields to dont do trash petitions
 			else{
-				if(USER.isEmpty() || PSSW.isEmpty()){ createAlert("Usuario o contraseña incorrectos11"); break; }
+				if(USER.isEmpty() || PSSW.isEmpty()){ createAlert("Servidor: Usuario o contraseña incorrectos."); break; }
 			}
 			//go to next intent
 			//i = new Intent(LoginActivity.this, HomeActivity.class );

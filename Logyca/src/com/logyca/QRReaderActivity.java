@@ -6,12 +6,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class QRReaderActivity extends Activity {
 
@@ -19,17 +28,40 @@ public class QRReaderActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_qrreader);
-
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		
-		//Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-		//intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-		//startActivityForResult(intent, 0);
 	}
 
+	@Override
+    protected void onStart() {
+        super.onStart();
+        ImageButton scanBtn = (ImageButton) findViewById(R.id.btnScanQR);
+		//in some trigger function e.g. button press within your code you should add:
+		scanBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				try {
+					
+					Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+					intent.putExtra("SCAN_MODE", "QR_CODE_MODE,PRODUCT_MODE");
+					startActivityForResult(intent, 0);
+				
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					Toast.makeText(getApplicationContext(), "ERROR:" + e, 1).show();
+
+				}
+
+			}
+		});
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -77,11 +109,35 @@ public class QRReaderActivity extends Activity {
          	 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
          	 // Vibrate for 250 milliseconds
          	 v.vibrate(250);
-	         TextView txt = (TextView)findViewById(R.id.qrreader_tittle);
-	         txt.setText("Resultado:"+contents);
+	         //TextView txt = (TextView)findViewById(R.id.qrreader_tittle);
+	         //txt.setText("Resultado:"+contents);
+         	 loadTagWebView(contents);
 	      } else if (resultCode == RESULT_CANCELED) {
 	         // Handle cancel
 	      }
 	   }
+	}
+	
+	private void loadTagWebView(String tag_text) {
+		// TODO Auto-generated method stub
+		WebView mView = (WebView)findViewById(R.id.webQRView);
+		//posible close button showup
+		LinearLayout myLayout =(LinearLayout)findViewById(R.id.webviewQRLayout);
+		myLayout.setVisibility(View.VISIBLE);
+		mView.setWebViewClient(new WebViewClient());
+		mView.loadUrl(tag_text);
+		//mView.getSettings().setAllowFileAccessFromFileURLs(true);
+		mView.getSettings().setUserAgentString("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1944.0 Safari/537.36");
+		mView.getSettings().setJavaScriptEnabled(true);
+		mView.getSettings().setSupportZoom(true);
+		mView.getSettings().setBuiltInZoomControls(false);
+		mView.getSettings().setUseWideViewPort(true);
+		Log.d("TAG","TICK "+ tag_text );
+	}
+	
+	public void selfDestruct(View view) {
+		//Action for login button, rigth now we're going to use it for testing purpose in a nfc Activity call
+		LinearLayout myLayout =(LinearLayout)findViewById(R.id.webviewQRLayout);
+		myLayout.setVisibility(View.INVISIBLE);
 	}
 }
