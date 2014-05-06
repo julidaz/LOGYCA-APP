@@ -178,6 +178,33 @@
         android:layout_toRightOf="@+id/ciudadTv"
         android:layout_marginLeft="10dp" />
 
+    <EditText
+        android:id="@+id/solicitarEt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/solicitarTv"
+        android:ems="10"
+        android:inputType="textMultiLine" >
 
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/solicitarTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/descripcionTv"
+        android:text="@string/SolicitarServicio"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/buttonOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/solicitarEt"
+        android:text="@string/ok"/>
+    
 </RelativeLayout>
 </ScrollView>
