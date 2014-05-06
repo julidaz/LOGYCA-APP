@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Logyca</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings for splash -->
+    <string name="splash_legend">logística y cadena de valor</string>
+    <!-- Strings for login -->
+    <string name="login_title">Login</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="text_password">Contraseña</string>
+    <string name="text_email">Email</string>
+    <string name="btn_text_login">Ingreso</string>
+    <string name="btn_text_login_twitter">Ingresso con Twitter</string>
+    <string name="btn_text_login_google">Ingreso con Google+</string>
+    <string name="btn_text_login_facebook">Ingreso con Facebook</string>
+    <string name="signup_text">Registro</string>
+    <!-- For facebook login -->
+    <string name="app_id">230149700525442</string>
+    <string name="title_activity_nfcreader">NFCReaderActivity</string>
+    <string name="NFC_reader_tittle">Lector de Tags NFC</string>
+    <!-- NEWS -->
+    <string name="title_activity_news">NewsActivity</string>
+    <string name="title_newsactivity_list">News</string>
+    <string name="title_newsactivity_detail">NewsActivity Detail</string>
+    <string name="text_news">Noticias</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_trends">TrendsActivity</string>
+    <string name="text_trends">Tendencias</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <!-- Android Studio -->
+    <string name="Servicios">Servicios</string>
+    <string name="Noticias">Noticias</string>
+    <string name="Tendencias">Tendencias</string>
+    <string name="Estandares">Estandares</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Desde">Desde:</string>
+    <string name="Hasta">Hasta:</string>
+    <string name="Hora">Hora:</string>
+    <string name="Duracion">Duración:</string>
+    <string name="Direccion">Dirección:</string>
+    <string name="Responsable">Responsable:</string>
+    <string name="Descripcion">Descripcion</string>
+    <string name="link">Link</string>
+    <string name="title_activity_qrreader">QRReaderActivity</string>
+<<<<<<< HEAD
+    <string name="qr_tittle">Lector de Códigos QR</string>
+=======
+    <string name="SolicitarServicio">Solicitar</string>
+    <string name="ok">Ok</string>
+>>>>>>> notiticas-tendencias
+
+</resources>
