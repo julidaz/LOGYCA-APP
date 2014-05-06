@@ -1,5 +1,7 @@
 package com.logyca;
 
+import android.app.Activity;
+import android.app.ActionBar;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -69,12 +71,13 @@ public class MainActivity extends Activity
             	nuevo= NoticiaFragment.newInstance(position+1);
             	break;
             case 2:
-                nuevo = PlaceholderFragment.newInstance(position+1);
-            	i = new Intent(MainActivity.this, TrendsActivity.class );
-    			startActivity(i);
-                break;
+            	nuevo= TendenciaFragment.newInstance(position+1);
+            	break;
             case 3:
-                nuevo = PlaceholderFragment.newInstance(position+1);
+            	nuevo= EstandarFragment.newInstance(position+1);
+            	break;
+            case 4:
+            	nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, NFCReaderActivity.class );
     			startActivity(i);
                 break;
@@ -108,6 +111,9 @@ public class MainActivity extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.Tendencias);
+                break;
+            case 4:
+                mTitle = getString(R.string.Estandares);
                 break;
         }
     }
@@ -159,9 +165,27 @@ public class MainActivity extends Activity
                 break;
             case 1:
             	//Mostrar el detalle de un servicio
-            	NoticiaDescripcionFragment detalle2;
-            	detalle2 = NoticiaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                NoticiaDescripcionFragment detalle2;
+                detalle2 = NoticiaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
                 fragmentManager.beginTransaction().replace(R.id.container,detalle2).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                break;
+            case 2:
+            	//Mostrar el detalle de una tendencia
+            	TendenciaDescripcionFragment detalle3;
+            	detalle3 = TendenciaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle3).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                break;
+            case 3:
+            	//Mostrar el menu de servicios
+                Fragment nuevo;
+                nuevo = PlaceholderFragment.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container,nuevo).commit();
+                break;  
+            case 4:
+            	//Mostrar el detalle de una tendencia
+            	TendenciaDescripcionFragment detalle5;
+            	detalle5 = TendenciaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle5).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             default:
                 break;

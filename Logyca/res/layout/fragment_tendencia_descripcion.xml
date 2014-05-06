@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/logo_servicio" />
+
+    <TextView
+        android:id="@+id/tituloTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageView"
+        android:text="Titulo Tendencia"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/descripcionTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tituloDescripcionTv"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nunc ligula, feugiat ut accumsan id, ultricies eu lorem. Aenean dapibus, odio nec aliquam blandit, velit ante faucibus urna, et dapibus enim neque et nibh. Suspendisse vitae leo augue. Sed quis suscipit elit, sed gravida justo. Phasellus a suscipit ligula, at tempus ligula. Proin eget sagittis neque, vel dapibus tellus. Quisque laoreet iaculis risus, ut posuere ligula vehicula nec. Vestibulum eu vestibulum est. Phasellus condimentum eros ac bibendum feugiat. Vivamus hendrerit mauris non nisl aliquam, ac malesuada elit auctor. Duis mollis commodo ullamcorper. Sed molestie congue volutpat. Cras convallis metus a aliquam condimentum. Fusce tincidunt elit a lorem suscipit dignissim. Sed sed quam pretium, semper urna ac, ullamcorper erat. Cras pulvinar tincidunt augue, sit amet scelerisque odio elementum aliquam." />
+
+    <TextView
+        android:id="@+id/tituloLinkTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tituloTv"
+        android:layout_toRightOf="@+id/imageView"
+        android:text="@string/link"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    
+    <TextView
+        android:id="@+id/linkTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tituloLinkTv"
+        android:layout_toRightOf="@+id/imageView"
+        android:text="Ver mas"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tituloDescripcionTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView"
+        android:text="@string/Descripcion"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+</RelativeLayout>
+
+</ScrollView>

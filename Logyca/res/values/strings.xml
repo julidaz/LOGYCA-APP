@@ -40,6 +40,7 @@
     <string name="Servicios">Servicios</string>
     <string name="Noticias">Noticias</string>
     <string name="Tendencias">Tendencias</string>
+    <string name="Estandares">Estandares</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Desde">Desde:</string>
     <string name="Hasta">Hasta:</string>
@@ -51,5 +52,7 @@
     <string name="link">Link</string>
     <string name="title_activity_qrreader">QRReaderActivity</string>
     <string name="qr_tittle">Lector de Códigos QR</string>
+    <string name="SolicitarServicio">Solicitar</string>
+    <string name="ok">Ok</string>
 
 </resources>
