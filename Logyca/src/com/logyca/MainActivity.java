@@ -77,12 +77,12 @@ public class MainActivity extends Activity
             	nuevo= EstandarFragment.newInstance(position+1);
             	break;
             case 4:
-            	nuevo = PlaceholderFragment.newInstance(position+1);
+                nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, NFCReaderActivity.class );
     			startActivity(i);
                 break;
-            case 4:
-                nuevo = PlaceholderFragment.newInstance(position+1);
+            case 5:
+            	nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, QRReaderActivity.class );
     			startActivity(i);
                 break;
