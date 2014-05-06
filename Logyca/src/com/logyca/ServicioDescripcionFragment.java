@@ -1,12 +1,26 @@
 package com.logyca;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -62,7 +76,6 @@ public class ServicioDescripcionFragment extends Fragment {
         args.putString(ARG_PARAM10, ciudad);
         args.putString(ARG_PARAM11, pais);
         args.putString(ARG_PARAM12, encargado);
-
 
         fragment.setArguments(args);
         return fragment;
@@ -121,13 +134,56 @@ public class ServicioDescripcionFragment extends Fragment {
         ciudad.setText(this.ciudad);
         pais.setText(this.pais);
         encargado.setText(this.encargado);
-
-
+        
         return fragmentview;
     }
 
-
     @Override
+	public void onStart() {
+		super.onStart();
+		Button b=(Button) getView().findViewById(R.id.buttonOk);
+        b.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				AsyncHttpClient client = new AsyncHttpClient();
+				//Data 
+				// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
+				String URL_complete = "http://www.colfuturo.org/movil/service.pedirServicio.php";
+				
+					RequestParams params = new RequestParams();
+					params.put("correo", "julian.acevedo@colfuturo.org");
+					params.put("servicio", titulo);
+					EditText et=(EditText) getView().findViewById(R.id.solicitarEt);
+					params.put("mensaje", et.getText());
+					client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
+					    @Override
+					    public void onSuccess(String response) {
+					    	
+					    	//String noticias="{\"tendencias\":[{\"titulo\":\"tend1\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.google.com\"},{\"titulo\":\"tend2\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.google.com\"}]}";
+//					    	JSONParser parser=new JSONParser();
+//							JSONObject jOb = new JSONObject();
+//							try {
+//								jOb = (JSONObject) parser.parse(response);
+//							} catch (org.json.simple.parser.ParseException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//							JSONArray news = (JSONArray) jOb.get( "noticias" );
+//							for(int i=0;i<news.size();i++)
+//							{
+//								JSONObject auxNew = (JSONObject) news.get(i);
+//								final String titulo= (String) auxNew.get("titulo");
+//								final String descripcion=(String) auxNew.get("descripcionNoticia");
+//								final String enlace= (String) auxNew.get("enlace");
+//								Noticia noticia=new Noticia(titulo, descripcion, enlace);
+//								noticias.add(noticia);
+//							}
+					    }
+					});			
+					createAlert("Servicio solicitado correctamente");
+			}
+		});
+	}
+	@Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
@@ -154,6 +210,20 @@ public class ServicioDescripcionFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-
-
+    private void createAlert(String string) {
+		// TODO Auto-generated method stub
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.getActivity());
+		alertDialogBuilder.setTitle("Envío correcto");
+		alertDialogBuilder.setMessage(string);
+		alertDialogBuilder.setCancelable(true);
+		alertDialogBuilder.setNeutralButton("Aceptar",
+		        new DialogInterface.OnClickListener() {
+		    		public void onClick(DialogInterface dialog, int id) {
+		    		    mListener.cambiarFragmento(3,new Bundle());
+		    			dialog.cancel();
+		    		}
+				});
+		AlertDialog alert = alertDialogBuilder.create();
+		alert.show();
+	}
 }

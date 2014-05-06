@@ -3,7 +3,7 @@
     tools:context="com.logyca.LoginActivity" >
 
     <item
-        android:id="@+id/wvLayout"
+        android:id="@+id/webviewQRLayout"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>

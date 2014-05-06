@@ -11,7 +11,10 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -30,6 +33,7 @@ import com.facebook.android.*;
 import com.loopj.android.http.*;
 
 public class LoginActivity extends Activity{
+	final Context context = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +85,6 @@ public class LoginActivity extends Activity{
 	}
 	
 	public void selfDestruct(View view) {
-		Intent i;
 		switch (view.getId()) {
 		case R.id.btnLogin:
 			//Action for login button, rigth now we're going to use it for testing purpose in a nfc Activity call
@@ -93,32 +96,72 @@ public class LoginActivity extends Activity{
 			String PSSW = pssw_edit.getText().toString();
 			// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
 			String URL_complete = "http://www.colfuturo.org/movil/service.login.php";
-			RequestParams params = new RequestParams();
-			params.put("correo", USER);
-			params.put("clave", PSSW);
-			client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
-			    @Override
-			    public void onSuccess(String response) {
-			    	if (response.contains("resultadoLogin\":\"true\"")){
-			    		Log.i("HTTPGet",response);
-			    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
-					startActivity(i);}
-			    }
-			});  
+			
+			if( USER.isEmpty()==false && PSSW.isEmpty()==false ){
+				RequestParams params = new RequestParams();
+				params.put("correo", USER);
+				params.put("clave", PSSW);
+				client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
+				    @Override
+				    public void onSuccess(String response) {
+				    	if (response.contains("resultadoLogin\":\"true\"")){
+				    		Log.i("HTTPGet",response);
+				    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
+				    		startActivity(i);
+						}else{
+							createAlert("Usuario o Contraseña incorrectos.");
+						}
+				    }
+				    //Alert for the request if it's false
+				    private void createAlert(String string) {
+						// TODO Auto-generated method stub
+						AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+						alertDialogBuilder.setTitle("Alerta");
+						alertDialogBuilder.setMessage(string);
+						alertDialogBuilder.setCancelable(true);
+						alertDialogBuilder.setNeutralButton("Aceptar",
+						        new DialogInterface.OnClickListener() {
+						    		public void onClick(DialogInterface dialog, int id) {
+						    			dialog.cancel();
+						    		}
+								});
+						AlertDialog alert = alertDialogBuilder.create();
+						alert.show();
+					}
+				});
+			}
+			//Validation for empty values in the fields to dont do trash petitions
+			else{
+				if(USER.isEmpty() || PSSW.isEmpty()){ createAlert("Servidor: Usuario o contraseña incorrectos."); break; }
+			}
 			//go to next intent
 			//i = new Intent(LoginActivity.this, HomeActivity.class );
 			//startActivity(i);
 			break;
 		case R.id.btnRegister:
 			// Action to register
-			/*
-		    i = new Intent(LoginActivity.this, MainActivity.class );
+			Intent i = new Intent(LoginActivity.this, QRReaderActivity.class );
 			startActivity(i);
-			*/
 			break;
 		default:
 			break;
 		}
+	}
+	
+	private void createAlert(String string) {
+		// TODO Auto-generated method stub
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+		alertDialogBuilder.setTitle("Alerta");
+		alertDialogBuilder.setMessage(string);
+		alertDialogBuilder.setCancelable(true);
+		alertDialogBuilder.setNeutralButton("Aceptar",
+		        new DialogInterface.OnClickListener() {
+		    		public void onClick(DialogInterface dialog, int id) {
+		    			dialog.cancel();
+		    		}
+				});
+		AlertDialog alert = alertDialogBuilder.create();
+		alert.show();
 	}
 	
 	/**

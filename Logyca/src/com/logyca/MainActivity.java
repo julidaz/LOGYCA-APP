@@ -2,32 +2,28 @@ package com.logyca;
 
 import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 
 public class MainActivity extends Activity
@@ -75,13 +71,19 @@ public class MainActivity extends Activity
             	nuevo= NoticiaFragment.newInstance(position+1);
             	break;
             case 2:
-                nuevo = PlaceholderFragment.newInstance(position+1);
-            	i = new Intent(MainActivity.this, TrendsActivity.class );
-    			startActivity(i);
-                break;
+            	nuevo= TendenciaFragment.newInstance(position+1);
+            	break;
             case 3:
+            	nuevo= EstandarFragment.newInstance(position+1);
+            	break;
+            case 4:
                 nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, NFCReaderActivity.class );
+    			startActivity(i);
+                break;
+            case 5:
+            	nuevo = PlaceholderFragment.newInstance(position+1);
+            	i = new Intent(MainActivity.this, QRReaderActivity.class );
     			startActivity(i);
                 break;
             default:
@@ -109,6 +111,9 @@ public class MainActivity extends Activity
                 break;
             case 3:
                 mTitle = getString(R.string.Tendencias);
+                break;
+            case 4:
+                mTitle = getString(R.string.Estandares);
                 break;
         }
     }
@@ -163,6 +168,24 @@ public class MainActivity extends Activity
                 NoticiaDescripcionFragment detalle2;
                 detalle2 = NoticiaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
                 fragmentManager.beginTransaction().replace(R.id.container,detalle2).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                break;
+            case 2:
+            	//Mostrar el detalle de una tendencia
+            	TendenciaDescripcionFragment detalle3;
+            	detalle3 = TendenciaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle3).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                break;
+            case 3:
+            	//Mostrar el menu de servicios
+                Fragment nuevo;
+                nuevo = PlaceholderFragment.newInstance(1);
+                fragmentManager.beginTransaction().replace(R.id.container,nuevo).commit();
+                break;  
+            case 4:
+            	//Mostrar el detalle de una tendencia
+            	TendenciaDescripcionFragment detalle5;
+            	detalle5 = TendenciaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle5).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             default:
                 break;
