@@ -54,5 +54,6 @@
     <string name="qr_tittle">Lector de Códigos QR</string>
     <string name="SolicitarServicio">Solicitar</string>
     <string name="ok">Ok</string>
+    <string name="title_activity_register">RegisterActivity</string>
 
 </resources>

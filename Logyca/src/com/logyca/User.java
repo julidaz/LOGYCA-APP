@@ -7,6 +7,10 @@ public class User implements Serializable {
 	private String user_name;
 	private String user_mail;
 	
+	public User(String uSER) {
+		// TODO Auto-generated constructor stub
+		this.user_mail = uSER;
+	}
 	public String getUser_name() {
 		return user_name;
 	}
@@ -19,6 +23,4 @@ public class User implements Serializable {
 	public void setUser_mail(String user_mail) {
 		this.user_mail = user_mail;
 	}
-	
-	
 }

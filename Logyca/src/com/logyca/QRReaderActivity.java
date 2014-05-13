@@ -1,5 +1,8 @@
 package com.logyca;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Tracker;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
