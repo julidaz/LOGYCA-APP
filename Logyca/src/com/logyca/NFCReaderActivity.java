@@ -1,5 +1,7 @@
 package com.logyca;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.PendingIntent;
@@ -49,6 +51,8 @@ public class NFCReaderActivity extends Activity{
          
         handleIntent(getIntent());
 		
+        EasyTracker easyTracker = EasyTracker.getInstance(this);
+        
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();

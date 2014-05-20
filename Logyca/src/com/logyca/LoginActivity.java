@@ -30,6 +30,8 @@ import android.widget.TextView;
 
 import com.facebook.*;
 import com.facebook.android.*;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.MapBuilder;
 import com.loopj.android.http.*;
 
 public class LoginActivity extends Activity{
@@ -39,6 +41,7 @@ public class LoginActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
 		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
@@ -85,8 +88,22 @@ public class LoginActivity extends Activity{
 	}
 	
 	public void selfDestruct(View view) {
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
 		switch (view.getId()) {
 		case R.id.btnLogin:
+			/* 
+			 * analytics Event
+			 */
+			easyTracker.send(MapBuilder
+			    .createEvent("ui_action",     // Event category (required)
+			                 "button_press",  // Event action (required)
+			                 "Login Button",   // Event label
+			                 null)            // Event value
+			    .build()
+			);
+			/*
+			 * End Analytics 
+			 */
 			//Action for login button, rigth now we're going to use it for testing purpose in a nfc Activity call
 			AsyncHttpClient client = new AsyncHttpClient();
 			//Data 
@@ -106,7 +123,11 @@ public class LoginActivity extends Activity{
 				    public void onSuccess(String response) {
 				    	if (response.contains("resultadoLogin\":\"true\"")){
 				    		Log.i("HTTPGet",response);
+				    		EditText user_edit = (EditText)findViewById(R.id.email_text);
+				    		String USER = user_edit.getText().toString();
+				    		User mUsr = new User( USER );
 				    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
+				    		i.putExtra("User", mUsr);
 				    		startActivity(i);
 						}else{
 							createAlert("Usuario o Contraseña incorrectos.");
@@ -140,7 +161,16 @@ public class LoginActivity extends Activity{
 			break;
 		case R.id.btnRegister:
 			// Action to register
-			Intent i = new Intent(LoginActivity.this, QRReaderActivity.class );
+			/* Analytics Code */
+			easyTracker.send(MapBuilder
+			    .createEvent("ui_action",     // Event category (required)
+			                 "button_press",  // Event action (required)
+			                 "Register Button",   // Event label
+			                 null)            // Event value
+			    .build()
+			);
+			/* End Analytics */
+			Intent i = new Intent(LoginActivity.this, RegisterActivity.class );
 			startActivity(i);
 			break;
 		default:

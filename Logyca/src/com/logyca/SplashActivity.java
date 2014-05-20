@@ -3,6 +3,8 @@ package com.logyca;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -22,7 +24,7 @@ import android.view.ViewGroup;
 
 public class SplashActivity extends Activity {
 	 // Splash screen timer
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1500;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,4 +102,15 @@ public class SplashActivity extends Activity {
         }
     }
 
+    @Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+    }
 }
