@@ -105,6 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.Noticias),
                         getString(R.string.Tendencias),
                         getString(R.string.Estandares),
+                        getString(R.string.Expertos),
                         getString(R.string.NFC_reader_tittle),
                         getString(R.string.qr_tittle),
                 }));

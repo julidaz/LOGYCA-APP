@@ -62,7 +62,7 @@ public class TendenciaFragment extends Fragment {
 						elBundle.putString("descripcion",
 								tendencia.getDescripcion());
 						elBundle.putString("link", tendencia.getLink());
-						mListener.cambiarFragmento(1, elBundle);
+						mListener.cambiarFragmento(2, elBundle);
 					}
 				});
 
@@ -93,7 +93,7 @@ public class TendenciaFragment extends Fragment {
 		// Data
 		// FORMAT URL :
 		// www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
-		String URL_complete = "http://www.colfuturo.org/movil/service.tendencias.php";
+		String URL_complete = "http://www.tecnoeficiencia.com/movil/service.tendencias.php";
 
 		RequestParams params = new RequestParams();
 		params.put("correo", "julian.acevedo@colfuturo.org");
@@ -136,30 +136,6 @@ public class TendenciaFragment extends Fragment {
 	}
 
 	public TendenciaFragment() {
-	}
-
-	private void loadTendencias() {
-		// TODO Auto-generated method stub
-		// llamar ws {"usuario":"pepe"}
-		String tendencias = "{\"tendencias\":[{\"titulo\":\"tendencia1\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.google.com\"},{\"titulo\":\"tendencia2\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.facebook.com\"}]}";
-		JSONParser parser = new JSONParser();
-		JSONObject jOb = new JSONObject();
-		try {
-			jOb = (JSONObject) parser.parse(tendencias);
-		} catch (org.json.simple.parser.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		JSONArray news = (JSONArray) jOb.get("tendencias");
-		for (int i = 0; i < news.size(); i++) {
-			JSONObject auxNew = (JSONObject) news.get(i);
-			final String titulo = (String) auxNew.get("titulo");
-			final String descripcion = (String) auxNew
-					.get("descripcionTendencia");
-			final String enlace = (String) auxNew.get("enlace");
-			Tendencia n = new Tendencia(titulo, descripcion, enlace);
-
-		}
 	}
 
 	@Override

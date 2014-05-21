@@ -112,7 +112,7 @@ public class LoginActivity extends Activity{
 			String USER = user_edit.getText().toString();
 			String PSSW = pssw_edit.getText().toString();
 			// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
-			String URL_complete = "http://www.colfuturo.org/movil/service.login.php";
+			String URL_complete = "http://www.tecnoeficiencia.com/movil/service.login.php";
 			
 			if( USER.isEmpty()==false && PSSW.isEmpty()==false ){
 				RequestParams params = new RequestParams();

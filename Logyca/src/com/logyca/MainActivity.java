@@ -77,15 +77,18 @@ public class MainActivity extends Activity
             	nuevo= EstandarFragment.newInstance(position+1);
             	break;
             case 4:
+            	nuevo= ExpertoFragment.newInstance(position+1);
+            	break;
+            case 5:
                 nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, NFCReaderActivity.class );
     			startActivity(i);
                 break;
-            case 5:
+            case 6:
             	nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, QRReaderActivity.class );
     			startActivity(i);
-                break;
+                break; 	
             default:
                 nuevo = PlaceholderFragment.newInstance(position+1);
                 break;
@@ -114,6 +117,8 @@ public class MainActivity extends Activity
                 break;
             case 4:
                 mTitle = getString(R.string.Estandares);
+            case 5:
+                mTitle = getString(R.string.Expertos);
                 break;
         }
     }
@@ -182,10 +187,10 @@ public class MainActivity extends Activity
                 fragmentManager.beginTransaction().replace(R.id.container,nuevo).commit();
                 break;  
             case 4:
-            	//Mostrar el detalle de una tendencia
-            	TendenciaDescripcionFragment detalle5;
-            	detalle5 = TendenciaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
-                fragmentManager.beginTransaction().replace(R.id.container,detalle5).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+            	//Mostrar el detalle de un experto
+            	ExpertoDescripcionFragment detalle4;
+            	detalle4 = ExpertoDescripcionFragment.newInstance(bundle.getString("nombre"), bundle.getString("correo"),bundle.getString("telefono"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle4).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             default:
                 break;

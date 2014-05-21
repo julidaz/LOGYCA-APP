@@ -147,7 +147,7 @@ public class ServicioDescripcionFragment extends Fragment {
 				AsyncHttpClient client = new AsyncHttpClient();
 				//Data 
 				// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
-				String URL_complete = "http://www.colfuturo.org/movil/service.pedirServicio.php";
+				String URL_complete = "http://www.tecnoeficiencia.com/movil/service.pedirServicio.php";
 				
 					RequestParams params = new RequestParams();
 					params.put("correo", "julian.acevedo@colfuturo.org");

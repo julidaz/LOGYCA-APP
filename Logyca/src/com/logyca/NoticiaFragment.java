@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NoticiaFragment extends Fragment{
 
@@ -76,15 +77,15 @@ public class NoticiaFragment extends Fragment{
 	private void cargarNoticias() {
 		AsyncHttpClient client = new AsyncHttpClient();
 		//Data 
-		// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
-		String URL_complete = "http://www.colfuturo.org/movil/service.noticias.php";
+		// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org
+		String URL_complete = "http://www.tecnoeficiencia.com/movil/service.noticias.php";
 		
 			RequestParams params = new RequestParams();
 			params.put("correo", "julian.acevedo@colfuturo.org");
 			client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
 			    @Override
 			    public void onSuccess(String response) {
-			    	//String noticias="{\"tendencias\":[{\"titulo\":\"tend1\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.google.com\"},{\"titulo\":\"tend2\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.google.com\"}]}";
+			    	Toast.makeText(getActivity(),"Clicked position: ", Toast.LENGTH_SHORT).show();
 			    	JSONParser parser=new JSONParser();
 					JSONObject jOb = new JSONObject();
 					try {

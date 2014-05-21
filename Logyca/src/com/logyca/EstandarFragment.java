@@ -62,7 +62,7 @@ public class EstandarFragment extends Fragment {
 						elBundle.putString("descripcion",
 								estandar.getDescripcion());
 						elBundle.putString("link", estandar.getLink());
-						mListener.cambiarFragmento(1, elBundle);
+						mListener.cambiarFragmento(3, elBundle);
 					}
 				});
 
@@ -93,7 +93,7 @@ public class EstandarFragment extends Fragment {
 		// Data
 		// FORMAT URL :
 		// www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
-		String URL_complete = "http://www.colfuturo.org/movil/service.estandares.php";
+		String URL_complete = "http://www.tecnoeficiencia.com/movil/service.estandares.php";
 
 		RequestParams params = new RequestParams();
 		params.put("correo", "julian.acevedo@colfuturo.org");
