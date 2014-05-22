@@ -55,5 +55,6 @@
     <string name="SolicitarServicio">Solicitar</string>
     <string name="ok">Ok</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="register_tittle">Email</string>
 
 </resources>
