@@ -2,12 +2,15 @@ package com.logyca;
 
 import android.app.Activity;
 import android.app.ActionBar;
+
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -44,6 +47,9 @@ public class MainActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Analytics Part, DO NOT DELETE THIS LINE
+      	EasyTracker easyTracker = EasyTracker.getInstance(this);
+        
         navigationCount=0;
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);

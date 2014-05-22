@@ -4,6 +4,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,10 @@ public class TrendsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		//Analytics Part, DO NOT DELETE THIS LINE
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+		
 		setContentView(R.layout.activity_trends);
 		loadTrends();
 	}

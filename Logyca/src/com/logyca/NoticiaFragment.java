@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.logyca.MainActivity.PlaceholderFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -40,7 +41,6 @@ public class NoticiaFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 		this.noticias = new ArrayList<Noticia>();
 		adaptador = new NoticiaAdapter(getActivity(), noticias);
-
         //Lista en el layout...
         ListView listaNoticias;
         listaNoticias = (ListView) rootView.findViewById(R.id.ServicesListView);

@@ -1,5 +1,7 @@
 package com.logyca;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -18,6 +20,9 @@ public class RegisterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 
+		//Analytics Part, DO NOT DELETE THIS LINE
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();

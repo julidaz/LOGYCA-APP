@@ -32,6 +32,9 @@ public class QRReaderActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_qrreader);
 		
+		//Analytics Part, DO NOT DELETE THIS LINE
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+		
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();

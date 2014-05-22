@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.logyca.MainActivity.PlaceholderFragment;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -41,7 +42,6 @@ public class EstandarFragment extends Fragment {
 		this.estandares = new ArrayList<Estandar>();
 		adaptador = new EstandarAdapter(getActivity(),
 				estandares);
-
 		// Lista en el layout...
 		ListView listaEstandars;
 		listaEstandars = (ListView) rootView

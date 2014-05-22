@@ -10,6 +10,8 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.xmlpull.v1.XmlPullParserException;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +28,9 @@ public class NewsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news);
+		//Analytics Part, DO NOT DELETE THIS LINE
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+				
 		getNewsFromWS();
 		loadNews();
 	}

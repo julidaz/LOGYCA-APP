@@ -57,7 +57,7 @@ public class EstandarDescripcionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View fragmentview =  inflater.inflate(R.layout.fragment_estandar_descripcion, container, false);
-
+        
         //Buscar los items dentro de este view
         TextView titulo = (TextView) fragmentview.findViewById(R.id.tituloTv);
         TextView descripcion = (TextView) fragmentview.findViewById(R.id.descripcionTv);

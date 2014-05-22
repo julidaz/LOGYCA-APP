@@ -41,6 +41,7 @@ public class LoginActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		//Analytics Part, DO NOT DELETE THIS LINE
 		EasyTracker easyTracker = EasyTracker.getInstance(this);
 		
 		if (savedInstanceState == null) {
@@ -112,7 +113,7 @@ public class LoginActivity extends Activity{
 			String USER = user_edit.getText().toString();
 			String PSSW = pssw_edit.getText().toString();
 			// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
-			String URL_complete = "http://www.colfuturo.org/movil/service.login.php";
+			String URL_complete = "http://www.tecnoeficiencia.com/movil/service.login.php";
 			
 			if( USER.isEmpty()==false && PSSW.isEmpty()==false ){
 				RequestParams params = new RequestParams();
@@ -130,7 +131,7 @@ public class LoginActivity extends Activity{
 				    		i.putExtra("User", mUsr);
 				    		startActivity(i);
 						}else{
-							createAlert("Usuario o ContraseÃ±a incorrectos.");
+							createAlert("Usuario o Contraseña incorrectos.");
 						}
 				    }
 				    //Alert for the request if it's false
@@ -153,7 +154,7 @@ public class LoginActivity extends Activity{
 			}
 			//Validation for empty values in the fields to dont do trash petitions
 			else{
-				if(USER.isEmpty() || PSSW.isEmpty()){ createAlert("Servidor: Usuario o contraseÃ±a incorrectos."); break; }
+				if(USER.isEmpty() || PSSW.isEmpty()){ createAlert("Usuario o contraseña incorrectos."); break; }
 			}
 			//go to next intent
 			//i = new Intent(LoginActivity.this, HomeActivity.class );

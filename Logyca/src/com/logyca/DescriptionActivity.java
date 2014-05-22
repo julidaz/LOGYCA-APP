@@ -1,5 +1,7 @@
 package com.logyca;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
@@ -14,7 +16,9 @@ public class DescriptionActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_description);
-		
+		//Analytics Part, DO NOT DELETE THIS LINE
+		EasyTracker easyTracker = EasyTracker.getInstance(this);
+				
 		Bundle b=getIntent().getExtras();
 		LinearLayout lay=(LinearLayout) findViewById(R.id.linearLayout);
 		lay.setBackgroundResource(R.drawable.noticia);
