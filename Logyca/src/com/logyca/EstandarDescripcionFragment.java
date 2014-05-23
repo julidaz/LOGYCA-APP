@@ -71,6 +71,7 @@ public class EstandarDescripcionFragment extends Fragment {
         super.onAttach(activity);
         try {
             mListener = (CambiarEntreFragmentos) activity;
+            mListener.cambiarTitulo("Estándar");
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement CambiarEntreFragmentos");
@@ -93,6 +94,11 @@ public class EstandarDescripcionFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-
+    @Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mListener.cambiarTitulo("Estandar");
+	}
 
 }

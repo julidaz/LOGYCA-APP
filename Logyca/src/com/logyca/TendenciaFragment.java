@@ -12,7 +12,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -32,6 +34,7 @@ public class TendenciaFragment extends Fragment {
 	CambiarEntreFragmentos mListener;
 	ArrayList<Tendencia> tendencias;
 	TendenciaAdapter adaptador=null;
+	Dialog progress;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,6 +92,7 @@ public class TendenciaFragment extends Fragment {
 	}
 
 	private void cargarTendencias() {
+		progress = ProgressDialog.show(getActivity(), "Loading data", "Please wait...");
 		AsyncHttpClient client = new AsyncHttpClient();
 		// Data
 		// FORMAT URL :
@@ -101,6 +105,7 @@ public class TendenciaFragment extends Fragment {
 			@Override
 			public void onSuccess(String response) {
 				// String
+				progress.dismiss();
 				Log.e("response",response);
 				JSONParser parser = new JSONParser();
 				JSONObject jOb = new JSONObject();
@@ -143,12 +148,20 @@ public class TendenciaFragment extends Fragment {
 		super.onAttach(activity);
 		try {
 			mListener = (CambiarEntreFragmentos) activity;
+			mListener.cambiarTitulo("Tendencias");
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString()
 					+ " must implement CambiarEntreFragmentos");
 		}
-		((MainActivity) activity).onSectionAttached(getArguments().getInt(
-				ARG_SECTION_NUMBER));
+
 	}
 
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mListener.cambiarTitulo("Tendencias");
+	}
+
+	
 }

@@ -71,6 +71,7 @@ public class TendenciaDescripcionFragment extends Fragment {
         super.onAttach(activity);
         try {
             mListener = (CambiarEntreFragmentos) activity;
+            mListener.cambiarTitulo("Tendencia");
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement CambiarEntreFragmentos");
@@ -94,5 +95,11 @@ public class TendenciaDescripcionFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
 
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mListener.cambiarTitulo("Tendencia");
+	}
 
 }

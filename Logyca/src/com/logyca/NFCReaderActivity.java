@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -94,7 +95,13 @@ public class NFCReaderActivity extends Activity{
 	                text.setText("Tag encontrado." );
 		            SystemClock.sleep(500);
 		            loadTagWebView( result.substring(2) );
-	            }
+		            //loadTagWebView("https://docs.google.com/a/colfuturo.org/gview?embedded=true&url=http://www.colfuturo.org/movil/pdf.php?correo=jmasmq100@gmail.com");
+		            
+		            /*WebSettings webSettings = myWebView.getSettings();
+		            webSettings.setJavaScriptEnabled(true);
+		            //String urlDir="http://web.presidencia.gov.co/constitucion/index.pdf";
+		    		myWebView.loadUrl("https://docs.google.com/a/colfuturo.org/gview?embedded=true&url=http://www.colfuturo.org/movil/pdf.php?correo=jmasmq100@gmail.com");
+	            */}
 	        } else {
 	            Log.d("NFC", "Wrong mime type: " + type);
 	            text.setText("");

@@ -30,49 +30,50 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NoticiaFragment extends Fragment{
+public class Top10Fragment extends Fragment{
 
 	private static final String ARG_SECTION_NUMBER = "section_number";
 	CambiarEntreFragmentos mListener;
-	ArrayList<Noticia> noticias;
-	NoticiaAdapter adaptador=null;
+	ArrayList<Top10> tops10;
+	Top10Adapter adaptador=null;
 	Dialog progress;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-		this.noticias = new ArrayList<Noticia>();
-		adaptador = new NoticiaAdapter(getActivity(), noticias);
+		this.tops10 = new ArrayList<Top10>();
+		adaptador = new Top10Adapter(getActivity(), tops10);
 
 		//Lista en el layout...
-		ListView listaNoticias;
-		listaNoticias = (ListView) rootView.findViewById(R.id.ServicesListView);
+		ListView listaTop10s;
+		listaTop10s = (ListView) rootView.findViewById(R.id.ServicesListView);
 		//Ponerle el adaptador
-		listaNoticias.setAdapter(adaptador);
-		listaNoticias.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+		listaTop10s.setAdapter(adaptador);
+		listaTop10s.setOnItemClickListener( new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 				//Toast.makeText(getActivity(), "Clicked position: "+position, Toast.LENGTH_SHORT).show();
 				Bundle elBundle = new Bundle();
-				Noticia noticia = noticias.get(position);
-				elBundle.putString("titulo",noticia.getTitulo());
-				elBundle.putString("descripcion",noticia.getDescripcion());
-				elBundle.putString("link",noticia.getLink());
-				mListener.cambiarFragmento(1,elBundle);
+				Top10 top10 = tops10.get(position);
+				elBundle.putString("titulo",top10.getTitulo());
+				elBundle.putString("descripcion",top10.getDescripcion());
+				elBundle.putString("link",top10.getLink());
+				mListener.cambiarFragmento(6,elBundle);
 			}
 		});
 
-		cargarNoticias();
+		cargarTop10s();
+
 		return rootView;
 	}
 
-	private void cargarNoticias() {
+	private void cargarTop10s() {
 		progress = ProgressDialog.show(getActivity(), "Loading data", "Please wait...");
 		AsyncHttpClient client = new AsyncHttpClient();
 		//Data 
 		// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org
-		String URL_complete = "http://www.tecnoeficiencia.com/movil/service.noticias.php";
+		String URL_complete = "http://www.tecnoeficiencia.com/movil/service.top10.php";
 
 		RequestParams params = new RequestParams();
 		params.put("correo", "julian.acevedo@colfuturo.org");
@@ -88,29 +89,29 @@ public class NoticiaFragment extends Fragment{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				JSONArray news = (JSONArray) jOb.get( "noticias" );
+				JSONArray news = (JSONArray) jOb.get( "tops10" );
 				for(int i=0;i<news.size();i++)
 				{
 					JSONObject auxNew = (JSONObject) news.get(i);
 					final String titulo= (String) auxNew.get("titulo");
-					final String descripcion=(String) auxNew.get("descripcionNoticia");
+					final String descripcion=(String) auxNew.get("descripcionTop10");
 					final String enlace= (String) auxNew.get("enlace");
-					Noticia noticia=new Noticia(titulo, descripcion, enlace);
-					adaptador.add(noticia);
+					Top10 top10=new Top10(titulo, descripcion, enlace);
+					adaptador.add(top10);
 				}
 			}
 		});
 	}
 
-	public static NoticiaFragment newInstance(int sectionNumber) {
-		NoticiaFragment fragment = new NoticiaFragment();
+	public static Top10Fragment newInstance(int sectionNumber) {
+		Top10Fragment fragment = new Top10Fragment();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
 		fragment.setArguments(args);
 		return fragment;
 	}
 
-	public NoticiaFragment() {
+	public Top10Fragment() {
 	}
 
 	@Override
@@ -118,7 +119,7 @@ public class NoticiaFragment extends Fragment{
 		super.onAttach(activity);
 		try {
 			mListener = (CambiarEntreFragmentos) activity;
-			mListener.cambiarTitulo("Noticias");
+			mListener.cambiarTitulo("Top10");
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.toString()
 					+ " must implement CambiarEntreFragmentos");
@@ -130,8 +131,7 @@ public class NoticiaFragment extends Fragment{
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mListener.cambiarTitulo("Noticias");
+		mListener.cambiarTitulo("Top10");
 	}
-
 
 }

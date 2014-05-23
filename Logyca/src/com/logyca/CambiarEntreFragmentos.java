@@ -7,4 +7,5 @@ import android.os.Bundle;
  */
 public interface CambiarEntreFragmentos {
     public void cambiarFragmento(int fragmento,Bundle bundle);
+    public void cambiarTitulo(String titulo);
 }
