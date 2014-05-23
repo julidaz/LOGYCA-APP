@@ -14,9 +14,11 @@ import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -51,6 +53,8 @@ public class MainActivity extends Activity
       	EasyTracker easyTracker = EasyTracker.getInstance(this);
         
         navigationCount=0;
+
+        
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -83,23 +87,29 @@ public class MainActivity extends Activity
             	nuevo= EstandarFragment.newInstance(position+1);
             	break;
             case 4:
+            	nuevo= ExpertoFragment.newInstance(position+1);
+            	break;
+            case 5:
+            	nuevo= Top10Fragment.newInstance(position+1);
+            	break;
+            case 6:
                 nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, NFCReaderActivity.class );
     			startActivity(i);
                 break;
-            case 5:
+            case 7:
             	nuevo = PlaceholderFragment.newInstance(position+1);
             	i = new Intent(MainActivity.this, QRReaderActivity.class );
     			startActivity(i);
-                break;
+                break; 	
             default:
                 nuevo = PlaceholderFragment.newInstance(position+1);
                 break;
         }
-        if(navigationCount!=0)
-        fragmentManager.beginTransaction().replace(R.id.container,nuevo).addToBackStack("position").commit();
-        else
-            fragmentManager.beginTransaction().replace(R.id.container,nuevo).commit();
+        //if(navigationCount!=0)
+       fragmentManager.beginTransaction().replace(R.id.container,nuevo).addToBackStack("position").commit();
+      //  else
+       //     fragmentManager.beginTransaction().replace(R.id.container,nuevo).commit();
         /*
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -120,6 +130,11 @@ public class MainActivity extends Activity
                 break;
             case 4:
                 mTitle = getString(R.string.Estandares);
+            case 5:
+                mTitle = getString(R.string.Expertos);
+                break;
+            case 6:
+                mTitle = getString(R.string.Top10);
                 break;
         }
     }
@@ -186,12 +201,24 @@ public class MainActivity extends Activity
                 Fragment nuevo;
                 nuevo = PlaceholderFragment.newInstance(1);
                 fragmentManager.beginTransaction().replace(R.id.container,nuevo).commit();
-                break;  
+                break;
             case 4:
-            	//Mostrar el detalle de una tendencia
-            	TendenciaDescripcionFragment detalle5;
-            	detalle5 = TendenciaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+            	//Mostrar el detalle de un experto
+            	EstandarDescripcionFragment detalle4;
+            	detalle4 = EstandarDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle4).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                break;
+            case 5:
+            	//Mostrar el detalle de un experto
+            	ExpertoDescripcionFragment detalle5;
+            	detalle5 = ExpertoDescripcionFragment.newInstance(bundle.getString("nombre"), bundle.getString("correo"),bundle.getString("telefono"));
                 fragmentManager.beginTransaction().replace(R.id.container,detalle5).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                break;
+            case 6:
+            	//Mostrar el detalle de un Top10
+                Top10DescripcionFragment detalle6;
+                detalle6 = Top10DescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                fragmentManager.beginTransaction().replace(R.id.container,detalle6).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             default:
                 break;
@@ -209,10 +236,14 @@ public class MainActivity extends Activity
         private static final String ARG_SECTION_NUMBER = "section_number";
         CambiarEntreFragmentos mListener;
         ArrayList<Servicio> servicios;
+        Dialog progress;
 
 
         private void loadServices()
         {
+    		progress = ProgressDialog.show(getActivity(), "Loading data", "Please wait...");
+        	//llamar al php
+    		progress.dismiss();
             String serviciosJSON= "{\"servicios\":[{\"nombreServicio\":\"serv1\",\"descripcionServicio\":\"blah\",\"nombreTipoServicio\":\"formacion\",\"fechaInicio\":\"12-12-12\",\"fechaFin\":\"12-12-12\",\"hora\":\"12pm\",\"duracion\":\"2h\",\"direccion\":\"alguna dir\",\"ciudad\":\"Bogota\",\"pais\":\"Colombia\",\"encargado\":\"Yohany\",\"enlace\":\"www.facebook.com\"},{\"nombreServicio\":\"serv2\",\"descripcionServicio\":\"blah\",\"nombreTipoServicio\":\"formacion\",\"fechaInicio\":\"13-13-13\",\"fechaFin\":\"13-13-13\",\"hora\":\"3am\",\"duracion\":\"15min\",\"direccion\":\"123 fake st\",\"ciudad\":\"Bogoshit\",\"pais\":\"Coloshit\",\"encargado\":\"Yohashit\",\"enlace\":\"www.9gag.com\"}]}";
             JSONParser parser = new JSONParser();
             JSONObject jOb = new JSONObject();
@@ -292,10 +323,6 @@ public class MainActivity extends Activity
             servicios.add(nuevo4);
             servicios.add(nuevo4);
 
-
-
-
-
             return rootView;
         }
 
@@ -304,13 +331,27 @@ public class MainActivity extends Activity
             super.onAttach(activity);
             try {
                 mListener = (CambiarEntreFragmentos) activity;
+                mListener.cambiarTitulo("Servicios");
             } catch (ClassCastException e) {
                 throw new ClassCastException(activity.toString()
                         + " must implement CambiarEntreFragmentos");
             }
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
 
+	@Override
+	public void cambiarTitulo(String titulo) {
+		// TODO Auto-generated method stub
+		ActionBar actionBar = getActionBar();
+        actionBar.setTitle(titulo);
+        mTitle=titulo;
+		
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		cambiarTitulo("Servicios");
+	}
 }

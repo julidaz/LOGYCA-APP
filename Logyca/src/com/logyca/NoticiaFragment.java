@@ -13,7 +13,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -27,6 +29,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NoticiaFragment extends Fragment{
 
@@ -34,13 +37,15 @@ public class NoticiaFragment extends Fragment{
 	CambiarEntreFragmentos mListener;
 	ArrayList<Noticia> noticias;
 	NoticiaAdapter adaptador=null;
-	
+	Dialog progress;
+
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 		this.noticias = new ArrayList<Noticia>();
 		adaptador = new NoticiaAdapter(getActivity(), noticias);
+
         //Lista en el layout...
         ListView listaNoticias;
         listaNoticias = (ListView) rootView.findViewById(R.id.ServicesListView);
@@ -72,51 +77,52 @@ public class NoticiaFragment extends Fragment{
 //        noticias.add(nuevo4);
         return rootView;
 	}
-	
+
 	private void cargarNoticias() {
+		progress = ProgressDialog.show(getActivity(), "Loading data", "Please wait...");
 		AsyncHttpClient client = new AsyncHttpClient();
 		//Data 
-		// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
-		String URL_complete = "http://www.colfuturo.org/movil/service.noticias.php";
-		
-			RequestParams params = new RequestParams();
-			params.put("correo", "julian.acevedo@colfuturo.org");
-			client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
-			    @Override
-			    public void onSuccess(String response) {
-			    	//String noticias="{\"tendencias\":[{\"titulo\":\"tend1\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.google.com\"},{\"titulo\":\"tend2\",\"descripcionTendencia\":\"blah\",\"enlace\":\"www.google.com\"}]}";
-			    	JSONParser parser=new JSONParser();
-					JSONObject jOb = new JSONObject();
-					try {
-						jOb = (JSONObject) parser.parse(response);
-					} catch (org.json.simple.parser.ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					JSONArray news = (JSONArray) jOb.get( "noticias" );
-					for(int i=0;i<news.size();i++)
-					{
-						JSONObject auxNew = (JSONObject) news.get(i);
-						final String titulo= (String) auxNew.get("titulo");
-						final String descripcion=(String) auxNew.get("descripcionNoticia");
-						final String enlace= (String) auxNew.get("enlace");
-						Noticia noticia=new Noticia(titulo, descripcion, enlace);
-						adaptador.add(noticia);
-					}
-			    }
-			});
+		// FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org
+		String URL_complete = "http://www.tecnoeficiencia.com/movil/service.noticias.php";
+
+		RequestParams params = new RequestParams();
+		params.put("correo", "julian.acevedo@colfuturo.org");
+		client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(String response) {
+				progress.dismiss();
+				JSONParser parser=new JSONParser();
+				JSONObject jOb = new JSONObject();
+				try {
+					jOb = (JSONObject) parser.parse(response);
+				} catch (org.json.simple.parser.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				JSONArray news = (JSONArray) jOb.get( "noticias" );
+				for(int i=0;i<news.size();i++)
+				{
+					JSONObject auxNew = (JSONObject) news.get(i);
+					final String titulo= (String) auxNew.get("titulo");
+					final String descripcion=(String) auxNew.get("descripcionNoticia");
+					final String enlace= (String) auxNew.get("enlace");
+					Noticia noticia=new Noticia(titulo, descripcion, enlace);
+					adaptador.add(noticia);
+				}
+			}
+		});
 	}
 
 	public static NoticiaFragment newInstance(int sectionNumber) {
 		NoticiaFragment fragment = new NoticiaFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        fragment.setArguments(args);
-        return fragment;
-    }
+		Bundle args = new Bundle();
+		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+		fragment.setArguments(args);
+		return fragment;
+	}
 
-    public NoticiaFragment() {
-    }
+	public NoticiaFragment() {
+	}
 
 	private void loadNoticias() {
 		// TODO Auto-generated method stub

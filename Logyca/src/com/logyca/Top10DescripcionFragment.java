@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 
 
-public class NoticiaDescripcionFragment extends Fragment {
+public class Top10DescripcionFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,8 +27,8 @@ public class NoticiaDescripcionFragment extends Fragment {
     CambiarEntreFragmentos mListener;
 
 
-    public static NoticiaDescripcionFragment newInstance(String titulo, String descripcion, String link ) {
-        NoticiaDescripcionFragment fragment = new NoticiaDescripcionFragment();
+    public static Top10DescripcionFragment newInstance(String titulo, String descripcion, String link ) {
+        Top10DescripcionFragment fragment = new Top10DescripcionFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, titulo);
         args.putString(ARG_PARAM2, descripcion);
@@ -37,7 +37,7 @@ public class NoticiaDescripcionFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    public NoticiaDescripcionFragment() {
+    public Top10DescripcionFragment() {
         // Required empty public constructor
     }
 
@@ -56,7 +56,7 @@ public class NoticiaDescripcionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragmentview =  inflater.inflate(R.layout.fragment_noticia_descripcion, container, false);
+        View fragmentview =  inflater.inflate(R.layout.fragment_top10_descripcion, container, false);
 
         //Buscar los items dentro de este view
         TextView titulo = (TextView) fragmentview.findViewById(R.id.tituloTv);
@@ -71,7 +71,7 @@ public class NoticiaDescripcionFragment extends Fragment {
         super.onAttach(activity);
         try {
             mListener = (CambiarEntreFragmentos) activity;
-            mListener.cambiarTitulo("Noticia");
+            mListener.cambiarTitulo("Top10");
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement CambiarEntreFragmentos");
@@ -99,6 +99,6 @@ public class NoticiaDescripcionFragment extends Fragment {
 	public void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		mListener.cambiarTitulo("Noticia");
+		mListener.cambiarTitulo("Top10");
 	}
 }

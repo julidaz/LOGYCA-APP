@@ -56,5 +56,8 @@
     <string name="ok">Ok</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="register_tittle">Email</string>
+    <string name="enviar_mensaje">Enviar mensaje</string>
+    <string name="Expertos">Expertos</string>
+    <string name="Top10">Top10</string>
 
 </resources>
