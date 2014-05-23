@@ -131,7 +131,7 @@ public class LoginActivity extends Activity{
 				    		i.putExtra("User", mUsr);
 				    		startActivity(i);
 						}else{
-							createAlert("Usuario o Contraseña incorrectos.");
+							createAlert("Usuario o Contraseï¿½a incorrectos.");
 						}
 				    }
 				    //Alert for the request if it's false
@@ -154,7 +154,7 @@ public class LoginActivity extends Activity{
 			}
 			//Validation for empty values in the fields to dont do trash petitions
 			else{
-				if(USER.isEmpty() || PSSW.isEmpty()){ createAlert("Usuario o contraseña incorrectos."); break; }
+				if(USER.isEmpty() || PSSW.isEmpty()){ createAlert("Usuario o contraseï¿½a incorrectos."); break; }
 			}
 			//go to next intent
 			//i = new Intent(LoginActivity.this, HomeActivity.class );
@@ -217,4 +217,15 @@ public class LoginActivity extends Activity{
 		    }
 		}
 	*/
+	@Override
+    public void onStart() {
+      super.onStart();
+      EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    }
+
+    @Override
+    public void onStop() {
+      super.onStop();
+      EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+    }
 }
