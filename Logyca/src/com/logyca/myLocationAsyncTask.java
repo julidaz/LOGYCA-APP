@@ -95,7 +95,7 @@ public class myLocationAsyncTask extends AsyncTask<Void, Void, Void> implements 
 			AddressAsync.trim();
 		} catch (Exception e) {
 			e.printStackTrace();
-			AddressAsync = "Refresh for the address";
+			AddressAsync = "";
 		}
 		return null;
 	}

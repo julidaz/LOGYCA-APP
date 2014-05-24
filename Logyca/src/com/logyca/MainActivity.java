@@ -20,6 +20,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -175,7 +176,59 @@ public class MainActivity extends Activity
     @Override
     public void cambiarFragmento(int fragmento, Bundle bundle) {
         FragmentManager fragmentManager = getFragmentManager();
-
+        
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            //Do some stuff
+        	switch (fragmento)
+            {
+                case 0:
+                    //Mostrar el detalle de un servicio
+                    ServicioDescripcionFragment detalle;
+                    detalle = ServicioDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"),bundle.getString("tipo"),bundle.getString("fechaInicio"),bundle.getString("fechaFin"),bundle.getString("hora"),bundle.getString("duracion"),bundle.getString("direccion"),bundle.getString("ciudad"),bundle.getString("pais"),bundle.getString("encargado"));
+                    fragmentManager.beginTransaction().replace(R.id.article_fragment,detalle).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                    break;
+                case 1:
+                	//Mostrar el detalle de un servicio
+                    NoticiaDescripcionFragment detalle2;
+                    detalle2 = NoticiaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                    fragmentManager.beginTransaction().replace(R.id.article_fragment,detalle2).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                    break;
+                case 2:
+                	//Mostrar el detalle de una tendencia
+                	TendenciaDescripcionFragment detalle3;
+                	detalle3 = TendenciaDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                    fragmentManager.beginTransaction().replace(R.id.article_fragment,detalle3).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                    break;
+                case 3:
+                	//Mostrar el menu de servicios
+                    Fragment nuevo;
+                    nuevo = PlaceholderFragment.newInstance(1);
+                    fragmentManager.beginTransaction().replace(R.id.container,nuevo).commit();
+                    break;
+                case 4:
+                	//Mostrar el detalle de un experto
+                	EstandarDescripcionFragment detalle4;
+                	detalle4 = EstandarDescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                    fragmentManager.beginTransaction().replace(R.id.article_fragment,detalle4).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                    break;
+                case 5:
+                	//Mostrar el detalle de un experto
+                	ExpertoDescripcionFragment detalle5;
+                	detalle5 = ExpertoDescripcionFragment.newInstance(bundle.getLong("id"),bundle.getString("nombre"), bundle.getString("correo"),bundle.getString("telefono"));
+                    fragmentManager.beginTransaction().replace(R.id.article_fragment,detalle5).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                    break;
+                case 6:
+                	//Mostrar el detalle de un Top10
+                    Top10DescripcionFragment detalle6;
+                    detalle6 = Top10DescripcionFragment.newInstance(bundle.getString("titulo"), bundle.getString("descripcion"), bundle.getString("link"));
+                    fragmentManager.beginTransaction().replace(R.id.article_fragment,detalle6).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
         switch (fragmento)
         {
             case 0:
@@ -211,7 +264,7 @@ public class MainActivity extends Activity
             case 5:
             	//Mostrar el detalle de un experto
             	ExpertoDescripcionFragment detalle5;
-            	detalle5 = ExpertoDescripcionFragment.newInstance(bundle.getString("nombre"), bundle.getString("correo"),bundle.getString("telefono"));
+            	detalle5 = ExpertoDescripcionFragment.newInstance(bundle.getLong("id"),bundle.getString("nombre"), bundle.getString("correo"),bundle.getString("telefono"));
                 fragmentManager.beginTransaction().replace(R.id.container,detalle5).addToBackStack(""+fragmento).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 break;
             case 6:
@@ -223,7 +276,9 @@ public class MainActivity extends Activity
             default:
                 break;
         }
+        }
     }
+    
 
     /**
      * A placeholder fragment containing a simple view.
@@ -244,7 +299,7 @@ public class MainActivity extends Activity
     		progress = ProgressDialog.show(getActivity(), "Loading data", "Please wait...");
         	//llamar al php
     		progress.dismiss();
-            String serviciosJSON= "{\"servicios\":[{\"nombreServicio\":\"serv1\",\"descripcionServicio\":\"blah\",\"nombreTipoServicio\":\"formacion\",\"fechaInicio\":\"12-12-12\",\"fechaFin\":\"12-12-12\",\"hora\":\"12pm\",\"duracion\":\"2h\",\"direccion\":\"alguna dir\",\"ciudad\":\"Bogota\",\"pais\":\"Colombia\",\"encargado\":\"Yohany\",\"enlace\":\"www.facebook.com\"},{\"nombreServicio\":\"serv2\",\"descripcionServicio\":\"blah\",\"nombreTipoServicio\":\"formacion\",\"fechaInicio\":\"13-13-13\",\"fechaFin\":\"13-13-13\",\"hora\":\"3am\",\"duracion\":\"15min\",\"direccion\":\"123 fake st\",\"ciudad\":\"Bogoshit\",\"pais\":\"Coloshit\",\"encargado\":\"Yohashit\",\"enlace\":\"www.9gag.com\"}]}";
+            String serviciosJSON= "{\"servicios\":[{\"nombreServicio\":\"serv1\",\"descripcionServicio\":\"blah\",\"nombreTipoServicio\":\"formacion\",\"fechaInicio\":\"12-12-12\",\"fechaFin\":\"12-12-12\",\"hora\":\"12pm\",\"duracion\":\"2h\",\"direccion\":\"alguna dir\",\"ciudad\":\"Bogota\",\"pais\":\"Colombia\",\"encargado\":\"Yohany\",\"enlace\":\"www.facebook.com\"},{\"nombreServicio\":\"serv2\",\"descripcionServicio\":\"blah\",\"nombreTipoServicio\":\"formacion\",\"fechaInicio\":\"13-13-13\",\"fechaFin\":\"13-13-13\",\"hora\":\"3am\",\"duracion\":\"15min\",\"direccion\":\"123 fake st\",\"ciudad\":\"Bogota\",\"pais\":\"Colombia\",\"encargado\":\"Yohany\",\"enlace\":\"www.9gag.com\"}]}";
             JSONParser parser = new JSONParser();
             JSONObject jOb = new JSONObject();
             try {
@@ -366,4 +421,6 @@ public class MainActivity extends Activity
       super.onStop();
       EasyTracker.getInstance(this).activityStop(this);  // Add this method.
     }
+
+	
 }

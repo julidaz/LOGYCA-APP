@@ -4,15 +4,15 @@ public class Experto {
 
 	private String nombre;
 	private String correo;
-	private int rating;
+	private Long id;
 	private String telefono;
 	
-	public Experto(int idExperto, int idInteres, String nombre, String correo,
-			String geoLocalizacion, int rating, String telefono) {
+	public Experto(Long idExperto, String nombre, String correo,
+			String geoLocalizacion) {
 		super();
 		this.nombre = nombre;
 		this.correo = correo;
-		this.rating = rating;
+		this.id = idExperto;
 		this.telefono = telefono;
 	}
 	
@@ -35,11 +35,11 @@ public class Experto {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public int getRating() {
-		return rating;
+	public Long getId() {
+		return id;
 	}
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public String getTelefono() {
 		return telefono;

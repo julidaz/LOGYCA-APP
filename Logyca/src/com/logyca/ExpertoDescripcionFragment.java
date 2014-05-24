@@ -14,6 +14,7 @@ import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,7 +39,7 @@ public class ExpertoDescripcionFragment extends Fragment {
 
 
 	// TODO: Rename and change types of parameters
-	private int idExperto;
+	private Long idExperto;
 	private int idInteres;
 	private String nombre;
 	private String correo;
@@ -51,13 +52,14 @@ public class ExpertoDescripcionFragment extends Fragment {
 	CambiarEntreFragmentos mListener;
 
 
-	public static ExpertoDescripcionFragment newInstance(String nombre, String correo, String telefono)
+	public static ExpertoDescripcionFragment newInstance(Long id, String nombre, String correo, String telefono)
 	{
 		ExpertoDescripcionFragment fragment = new ExpertoDescripcionFragment();
 		Bundle args = new Bundle();
 		args.putString(ARG_PARAM1, nombre);
 		args.putString(ARG_PARAM2, correo);
 		args.putString(ARG_PARAM3, telefono);
+		args.putLong(ARG_PARAM4, id);
 
 		fragment.setArguments(args);
 		return fragment;
@@ -73,6 +75,7 @@ public class ExpertoDescripcionFragment extends Fragment {
 			nombre = getArguments().getString(ARG_PARAM1);
 			correo = getArguments().getString(ARG_PARAM2);
 			telefono = getArguments().getString(ARG_PARAM3);
+			idExperto = getArguments().getLong(ARG_PARAM4);
 		}
 		//this.setRetainInstance(true);
 	}
@@ -81,14 +84,10 @@ public class ExpertoDescripcionFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		View fragmentview =  inflater.inflate(R.layout.fragment_experto_descripcion, container, false);
+		final View fragmentview =  inflater.inflate(R.layout.fragment_experto_descripcion, container, false);
 
 		//Buscar los items dentro de este view
-		TextView nombre = (TextView) fragmentview.findViewById(R.id.nombreTv);
-		TextView correo = (TextView) fragmentview.findViewById(R.id.correoTv);
-		TextView telefono= (TextView) fragmentview.findViewById(R.id.telefonoTv);
-		TextView asunto= (TextView) fragmentview.findViewById(R.id.asuntoEditText);
-		TextView contacto= (TextView) fragmentview.findViewById(R.id.contactoEditText);
+		
 
 		//asuntoTxt=(String)asunto.getText();
 		//contactoTxt=(String)contacto.getText();
@@ -96,24 +95,33 @@ public class ExpertoDescripcionFragment extends Fragment {
 		Button enviar= (Button) fragmentview.findViewById(R.id.enviarMensajeButton);
 		enviar.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				Toast.makeText(getActivity(),"Id: "+idExperto, Toast.LENGTH_SHORT).show();
 				progress = ProgressDialog.show(getActivity(), "Loading data", "Please wait...");
 				AsyncHttpClient client = new AsyncHttpClient();
+				TextView asunto= (TextView) fragmentview.findViewById(R.id.asuntoEditText);
+				TextView contacto= (TextView) fragmentview.findViewById(R.id.contactoEditText);
+				asuntoTxt=asunto.getText().toString();
+				
+				
 				//Data 
 				//FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
 				String URL_complete = "http://www.tecnoeficiencia.com/movil/service.enviarCorreo.php";
 
 				RequestParams params = new RequestParams();
+				params.put("id", idExperto+"");
+				params.put("tipo", "2");
 				params.put("correo", "julian.acevedo@colfuturo.org");
-				params.put("id", "id");
-				params.put("asunto", asuntoTxt);
-				params.put("contenido", contactoTxt);
-				params.put("tipo","experto");
+				params.put("asunto", asunto.getText().toString());
+				params.put("contenido", contacto.getText().toString());
+				
+				Log.wtf("dds", params.toString());
 				client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
 						//hacer algo
 						progress.dismiss();
-						Toast.makeText(getActivity(),"Correo enviado", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getActivity(),"Correo enviado + \n"+response, Toast.LENGTH_SHORT).show();
+						Log.wtf("dsds", "res: "+response);
 					}
 				});
 			}

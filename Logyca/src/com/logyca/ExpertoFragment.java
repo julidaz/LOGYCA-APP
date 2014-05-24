@@ -64,6 +64,7 @@ public class ExpertoFragment extends Fragment{
 			public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 				Bundle elBundle = new Bundle();
 				Experto experto = expertos.get(position);
+				elBundle.putLong("id",experto.getId());
 				elBundle.putString("nombre",experto.getNombre());
 				elBundle.putString("correo",experto.getCorreo());
 				elBundle.putString("telefono",experto.getTelefono());
@@ -145,7 +146,8 @@ public class ExpertoFragment extends Fragment{
 					final String nombre= (String) auxNew.get("nombre");
 					final String correo=(String) auxNew.get("correo");
 					final String telefono= (String) auxNew.get("telefono");
-					Experto experto=new Experto(nombre, correo, telefono);
+					final Long id = (Long) auxNew.get("idexperto");
+					Experto experto=new Experto(id,nombre, correo, telefono);
 					adaptador.add(experto);
 				}
 			}
