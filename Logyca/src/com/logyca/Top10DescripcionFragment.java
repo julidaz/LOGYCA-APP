@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 
@@ -59,9 +61,21 @@ public class Top10DescripcionFragment extends Fragment {
         View fragmentview =  inflater.inflate(R.layout.fragment_top10_descripcion, container, false);
 
         //Buscar los items dentro de este view
-        TextView titulo = (TextView) fragmentview.findViewById(R.id.tituloTv);
-        TextView descripcion = (TextView) fragmentview.findViewById(R.id.descripcionTv);
-        TextView link = (TextView) fragmentview.findViewById(R.id.linkTv);
+        TextView tituloTv = (TextView) fragmentview.findViewById(R.id.tituloTv);
+        TextView descripcionTv = (TextView) fragmentview.findViewById(R.id.descripcionTv);
+        TextView linkTv = (TextView) fragmentview.findViewById(R.id.linkTv);
+        
+        linkTv.setText("Ver mas");
+		final String myLink=this.link;
+
+        linkTv.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				String url = myLink;
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				startActivity(i);
+			}
+		});
         return fragmentview;
     }
 

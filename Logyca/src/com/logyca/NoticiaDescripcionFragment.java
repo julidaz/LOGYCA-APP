@@ -4,9 +4,17 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Intent;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -59,12 +67,25 @@ public class NoticiaDescripcionFragment extends Fragment {
         View fragmentview =  inflater.inflate(R.layout.fragment_noticia_descripcion, container, false);
 
         //Buscar los items dentro de este view
-        TextView titulo = (TextView) fragmentview.findViewById(R.id.tituloTv);
-        TextView descripcion = (TextView) fragmentview.findViewById(R.id.descripcionTv);
-        TextView link = (TextView) fragmentview.findViewById(R.id.linkTv);
+        TextView tituloTv = (TextView) fragmentview.findViewById(R.id.tituloTv);
+        TextView descripcionTv = (TextView) fragmentview.findViewById(R.id.descripcionTv);
+        TextView linkTv = (TextView) fragmentview.findViewById(R.id.linkTv);
+        
+        tituloTv.setText(this.titulo);
+        descripcionTv.setText(this.descripcion);
+        linkTv.setText("Ver mas");
+		final String myLink=this.link;
+
+        linkTv.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				String url = myLink;
+				Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(url));
+				startActivity(i);
+			}
+		});
         return fragmentview;
     }
-
 
     @Override
     public void onAttach(Activity activity) {

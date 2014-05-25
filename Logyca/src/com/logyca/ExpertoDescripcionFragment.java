@@ -87,10 +87,12 @@ public class ExpertoDescripcionFragment extends Fragment {
 		final View fragmentview =  inflater.inflate(R.layout.fragment_experto_descripcion, container, false);
 
 		//Buscar los items dentro de este view
-		
-
-		//asuntoTxt=(String)asunto.getText();
-		//contactoTxt=(String)contacto.getText();
+		TextView nombre=(TextView) fragmentview.findViewById(R.id.nombreTv);
+		TextView correo=(TextView) fragmentview.findViewById(R.id.correoDesc);
+		TextView telefono=(TextView) fragmentview.findViewById(R.id.telefonoDesc);
+		nombre.setText(this.nombre);
+		correo.setText(this.correo);
+		telefono.setText(this.telefono);
 
 		Button enviar= (Button) fragmentview.findViewById(R.id.enviarMensajeButton);
 		enviar.setOnClickListener(new OnClickListener() {
@@ -98,12 +100,10 @@ public class ExpertoDescripcionFragment extends Fragment {
 				Toast.makeText(getActivity(),"Id: "+idExperto, Toast.LENGTH_SHORT).show();
 				progress = ProgressDialog.show(getActivity(), "Loading data", "Please wait...");
 				AsyncHttpClient client = new AsyncHttpClient();
+
 				TextView asunto= (TextView) fragmentview.findViewById(R.id.asuntoEditText);
 				TextView contacto= (TextView) fragmentview.findViewById(R.id.contactoEditText);
 				asuntoTxt=asunto.getText().toString();
-				
-				
-				//Data 
 				//FORMAT URL : www.colfuturo.org/movil/service.login.php?correo=julian.acevedo@colfuturo.org&clave=10101010
 				String URL_complete = "http://www.tecnoeficiencia.com/movil/service.enviarCorreo.php";
 
@@ -113,7 +113,7 @@ public class ExpertoDescripcionFragment extends Fragment {
 				params.put("correo", "julian.acevedo@colfuturo.org");
 				params.put("asunto", asunto.getText().toString());
 				params.put("contenido", contacto.getText().toString());
-				
+
 				Log.wtf("dds", params.toString());
 				client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
 					@Override
