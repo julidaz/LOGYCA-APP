@@ -2,6 +2,8 @@ package com.logyca;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import org.apache.http.client.HttpClient;
@@ -9,6 +11,7 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,8 +19,13 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,16 +35,28 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.*;
 import com.facebook.android.*;
+import com.facebook.model.GraphUser;
+import com.facebook.widget.LoginButton;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.loopj.android.http.*;
 
 public class LoginActivity extends Activity{
 	final Context context = this;
-	
+	private UiLifecycleHelper uiHelper;
+	private Session.StatusCallback callback = 
+	    new Session.StatusCallback() {
+	    @Override
+	    public void call(Session session, 
+	            SessionState state, Exception exception) {
+	        onSessionStateChange(session, state, exception);
+	    }
+	};
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,11 +64,13 @@ public class LoginActivity extends Activity{
 		//Analytics Part, DO NOT DELETE THIS LINE
 		EasyTracker easyTracker = EasyTracker.getInstance(this);
 		
+		uiHelper = new UiLifecycleHelper(this, callback);
+	    uiHelper.onCreate(savedInstanceState);
+	    
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
-		 
 	}
 
 	@Override
@@ -174,6 +196,7 @@ public class LoginActivity extends Activity{
 			Intent i = new Intent(LoginActivity.this, RegisterActivity.class );
 			startActivity(i);
 			break;
+
 		default:
 			break;
 		}
@@ -195,37 +218,117 @@ public class LoginActivity extends Activity{
 		alert.show();
 	}
 	
-	/**
-	 * Facebook login part
-	 * */
-	/*
-	private Session.StatusCallback statusCallback = new SessionStatusCallback();
-		private void onClickLogin() {
-		    Session session = Session.getActiveSession();
-		    if (!session.isOpened() && !session.isClosed()) {
-		        session.openForRead(new Session.OpenRequest(this)
-		            .setPermissions(Arrays.asList("basic_info"))
-		            .setCallback(statusCallback));
-		    } else {
-		        Session.openActiveSession(getActivity(), this, true, statusCallback);
-		    }
-		}
-		private class SessionStatusCallback implements Session.StatusCallback {
-		    @Override
-		    public void call(Session session, SessionState state, Exception exception) {
-		            // Respond to session state changes, ex: updating the view
-		    }
-		}
-	*/
 	@Override
     public void onStart() {
       super.onStart();
       EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+      
+      LoginButton authButton = (LoginButton) findViewById(R.id.btnFacebook);
+	  authButton.setReadPermissions(Arrays.asList("user_location", "user_birthday", "user_likes", "email"));
     }
 
     @Override
     public void onStop() {
       super.onStop();
       EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+    }
+    
+    @Override
+    public void onResume() {
+        super.onResume();
+        uiHelper.onResume();
+    }
+    
+    private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+        if (state.isOpened()) {
+            Log.i("Fb", "Logged in...");
+            //Verification code
+            // Request user data and show the results
+            Request.executeMeRequestAsync(session, new Request.GraphUserCallback() {
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                    if (user != null) {
+                        // Display the parsed user info
+                    	Log.e("Fb", user.getName());
+                    	String email;
+						try {
+							email = user.getInnerJSONObject().getString("email");
+							Log.e("Fb", email);
+							facebookLoginflow(user);
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                    }
+                }
+
+				private void facebookLoginflow(final GraphUser user) throws JSONException {
+					// TODO Auto-generated method stub
+					AsyncHttpClient client = new AsyncHttpClient();
+					String URL_complete = "http://www.tecnoeficiencia.com/movil/service.login.php";
+					RequestParams params = new RequestParams();
+					final String email = user.getInnerJSONObject().getString("email");
+					params.put("correo", email);
+					params.put("clave", "f4c3b00kl0gyc4");
+					client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
+					    @Override
+					    public void onSuccess(String response) {
+					    	if (response.contains("resultadoLogin\":\"true\"")){
+					    		Log.i("HTTPGet",response);
+					    		User mUsr = new User( email );
+					    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
+					    		i.putExtra("User", mUsr);
+					    		startActivity(i);
+							}else{
+								//create a facebook user
+								AsyncHttpClient client = new AsyncHttpClient();
+								String URL_complete = "http://www.tecnoeficiencia.com/movil/service.registros.php";
+								RequestParams params = new RequestParams();
+								params.put("correo", email);
+								params.put("clave", "f4c3b00kl0gyc4");
+								params.put("nombre", user.getName());
+								
+								client.get(null, URL_complete, params, new AsyncHttpResponseHandler() {
+								    @Override
+								    public void onSuccess(String response) {
+								    	if (response.contains("resultadoLogin\":\"true\"")){
+								    		Log.i("HTTPGet",response);
+								    		createAlert("Usuario registrado correctamente, sera dirigido a la pantalla principal.");
+								    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
+								    		startActivity(i);
+										}else{
+											//nothing
+										}
+								    }
+								});
+							}
+					    }
+					});
+				}
+            });
+            //end code
+            Intent i = new Intent(LoginActivity.this, MainActivity.class );
+			startActivity(i);
+        } else if (state.isClosed()) {
+            Log.i("Fb", "Logged out...");
+        }
+    }
+    
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        uiHelper.onActivityResult(requestCode, resultCode, data);
+    }
+    
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        uiHelper.onDestroy();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        uiHelper.onSaveInstanceState(outState);
     }
 }
