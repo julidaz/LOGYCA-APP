@@ -148,9 +148,8 @@ public class LoginActivity extends Activity{
 				    		Log.i("HTTPGet",response);
 				    		EditText user_edit = (EditText)findViewById(R.id.email_text);
 				    		String USER = user_edit.getText().toString();
-				    		User mUsr = new User( USER );
 				    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
-				    		i.putExtra("User", mUsr);
+				    		i.putExtra("User", USER);
 				    		startActivity(i);
 						}else{
 							createAlert("Usuario o Contrase�a incorrectos.");
@@ -275,9 +274,8 @@ public class LoginActivity extends Activity{
 					    public void onSuccess(String response) {
 					    	if (response.contains("resultadoLogin\":\"true\"")){
 					    		Log.i("HTTPGet",response);
-					    		User mUsr = new User( email );
 					    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
-					    		i.putExtra("User", mUsr);
+					    		i.putExtra("User", email);
 					    		startActivity(i);
 							}else{
 								//create a facebook user
@@ -295,6 +293,7 @@ public class LoginActivity extends Activity{
 								    		Log.i("HTTPGet",response);
 								    		createAlert("Usuario registrado correctamente, sera dirigido a la pantalla principal.");
 								    		Intent i = new Intent(LoginActivity.this, MainActivity.class );
+								    		i.putExtra("User", email);
 								    		startActivity(i);
 										}else{
 											//nothing

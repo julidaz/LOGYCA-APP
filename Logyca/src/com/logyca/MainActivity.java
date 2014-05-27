@@ -71,7 +71,7 @@ public class MainActivity extends Activity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getFragmentManager();
         Fragment nuevo;
-
+       
         Intent i;
         switch (position)
         {
@@ -100,7 +100,10 @@ public class MainActivity extends Activity
                 break;
             case 7:
             	nuevo = PlaceholderFragment.newInstance(position+1);
+            	Bundle tmp = this.getIntent().getExtras();
             	i = new Intent(MainActivity.this, QRReaderActivity.class );
+            	String user = tmp.getString("User");
+            	i.putExtra("User", user);
     			startActivity(i);
                 break; 	
             case 8:

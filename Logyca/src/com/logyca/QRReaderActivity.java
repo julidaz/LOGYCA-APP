@@ -119,9 +119,11 @@ public class QRReaderActivity extends Activity {
 	         //TextView txt = (TextView)findViewById(R.id.qrreader_tittle);
 	         //txt.setText("Resultado:"+contents);
          	 if(contents.contains("http://www.tecnoeficiencia.com/movil/pdf.php")){
-				User user = getIntent().getExtras().getParcelable("User");
+         		Bundle tmp = this.getIntent().getExtras();
+            	String user = tmp.getString("User");
+				Log.d("User", user );
          		Intent i = new Intent(Intent.ACTION_VIEW);
-				i.setData(Uri.parse(contents+"?correo="+user.getUser_mail()));
+				i.setData(Uri.parse(contents+"?correo="+user));
 				startActivity(i);
          	 }
          	 else loadTagWebView(contents);
