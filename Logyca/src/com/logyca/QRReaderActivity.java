@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
@@ -117,8 +118,14 @@ public class QRReaderActivity extends Activity {
          	 v.vibrate(250);
 	         //TextView txt = (TextView)findViewById(R.id.qrreader_tittle);
 	         //txt.setText("Resultado:"+contents);
-         	 //loadTagWebView(contents);
-   	         loadTagWebView("https://docs.google.com/gview?embedded=true&url=http://fzs.sve-mo.ba/sites/default/files/dokumenti-vijesti/sample.pdf");
+         	 if(contents.contains("http://www.tecnoeficiencia.com/movil/pdf.php")){
+				User user = getIntent().getExtras().getParcelable("User");
+         		Intent i = new Intent(Intent.ACTION_VIEW);
+				i.setData(Uri.parse(contents+"?correo="+user.getUser_mail()));
+				startActivity(i);
+         	 }
+         	 else loadTagWebView(contents);
+   	         //loadTagWebView("https://docs.google.com/gview?embedded=true&url=http://fzs.sve-mo.ba/sites/default/files/dokumenti-vijesti/sample.pdf");
 	         //loadTagWebView("https://docs.google.com/gview?embedded=true&url=http://www.colfuturo.org/movil/pdf.php?correo=jmasmq100@gmail.com");
 	         //myWebView.loadUrl("https://docs.google.com/gview?embedded=true&url=http://www.colfuturo.org/movil/pdf.php?correo=jmasmq100@gmail.com");
 	      } else if (resultCode == RESULT_CANCELED) {
