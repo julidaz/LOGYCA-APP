@@ -12,7 +12,9 @@ import com.loopj.android.http.RequestParams;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +36,7 @@ import android.os.Build;
 
 public class InteresesActivity extends Activity {
 	final Context int_context = this;
+	Dialog progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,25 +96,42 @@ public class InteresesActivity extends Activity {
 
 		Button btn = (Button)findViewById(R.id.btn_guardar);
 		btn.setOnClickListener(new OnClickListener() {
-
 			public void onClick(View v) {
 				StringBuilder sb=new StringBuilder();
-				LinearLayout ll = (LinearLayout) v.findViewById(R.id.linearLayout);
+				LinearLayout ll = (LinearLayout) findViewById(R.id.layoutIntereses);
 				int count = ll.getChildCount();
 				for(int i = 0;i<count;i++)
 				{
 					View auxView = ll.getChildAt(i);
-					if(auxView instanceof Switch)
+					Log.wtf("dolan", "AUXVIEW INSTANCE OF " + (auxView instanceof LinearLayout));
+					if(auxView instanceof LinearLayout)
 					{
-						Switch s = (Switch) v;
-						sb.append(getResources().getResourceName(s.getId()));
-						sb.append("-");
+						View mySwitch = ((LinearLayout) auxView).getChildAt(2);
+						if(mySwitch instanceof Switch)
+						{
+							Log.wtf("result", "bien");
+							Switch s = (Switch) mySwitch;
+							if(s.isChecked())
+							{
+								String id=getResources().getResourceEntryName(s.getId());
+								String numeroId=id.substring(6, id.length());
+								sb.append(numeroId);
+								sb.append("-");
+							}
+						}
 					}
 				}
-				if(sb.charAt(sb.length()-1)=='-')
-					sb.deleteCharAt(sb.length()-1);
-				
+				if(sb.length()>0)
+				{
+					if(sb.charAt(sb.length()-1)=='-')
+						sb.deleteCharAt(sb.length()-1);
+				}
+
 				final String intereses=sb.toString();
+				//Log.wtf("intereses", intereses);
+				//Toast.makeText(int_context, "Intereses guardados: "+intereses, Toast.LENGTH_SHORT).show();
+				progress = ProgressDialog.show(int_context, "Loading data", "Please wait...");
+
 				AsyncHttpClient client = new AsyncHttpClient();
 				String URL_complete = "http://www.tecnoeficiencia.com/movil/service.grabaIntereses.php";
 
@@ -122,9 +142,12 @@ public class InteresesActivity extends Activity {
 					@Override
 					public void onSuccess(String response) {
 						Toast.makeText(int_context, "Intereses guardados: "+intereses, Toast.LENGTH_SHORT).show();
-
+						progress.dismiss();
+						onBackPressed();
 					}
 				});
+//				progress.dismiss();
+//				onBackPressed();
 			}
 		});
 	}

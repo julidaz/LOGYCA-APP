@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content" >
 
                 <LinearLayout
-                    android:id="@+id/linearLayout"
+                    android:id="@+id/layoutIntereses"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:baselineAligned="false"
@@ -84,7 +84,7 @@
                             android:text="Identificación de productos por código de barras" />
 
                         <Switch
-                            android:id="@+id/codigoDeBarrasSwitch"
+                            android:id="@+id/switch1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -110,7 +110,7 @@
                             android:text="Sincronización de la información (logyca/sync)" />
 
                         <Switch
-                            android:id="@+id/sincronizacionInformacionSwitch"
+                            android:id="@+id/switch2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -136,7 +136,7 @@
                             android:text="Calidad de la información (Data Quality)" />
 
                         <Switch
-                            android:id="@+id/calidadInformacionSwitch"
+                            android:id="@+id/switch3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -162,7 +162,7 @@
                             android:text="Trazabilidad mediante estándares" />
 
                         <Switch
-                            android:id="@+id/trazabilidadMedianteEstandaresSwitch"
+                            android:id="@+id/switch4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -188,7 +188,7 @@
                             android:text="Sostenibilidad" />
 
                         <Switch
-                            android:id="@+id/sostenibilidadSwitch"
+                            android:id="@+id/switch5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -214,7 +214,7 @@
                             android:text="Finanzas en la cadena de valor" />
 
                         <Switch
-                            android:id="@+id/finanzasCadenaValorSwitch"
+                            android:id="@+id/switch6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -240,7 +240,7 @@
                             android:text="Riesgo en la cadena de valor" />
 
                         <Switch
-                            android:id="@+id/riesgoCadenaValorSwitch"
+                            android:id="@+id/switch7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -266,7 +266,7 @@
                             android:text="Distribución urbana de mercancías" />
 
                         <Switch
-                            android:id="@+id/distribucionUrbanaMercanciasSwitch"
+                            android:id="@+id/switch8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -292,7 +292,7 @@
                             android:text="Gestión de la demanda" />
 
                         <Switch
-                            android:id="@+id/gestionDemandaSwitch"
+                            android:id="@+id/switch9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -318,7 +318,7 @@
                             android:text="Gestión de inventarios" />
 
                         <Switch
-                            android:id="@+id/gestionInventariosSwitch"
+                            android:id="@+id/switch10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -344,7 +344,7 @@
                             android:text="Gestión de distribución y transporte" />
 
                         <Switch
-                            android:id="@+id/gestionDistribucionTransporteSwitch"
+                            android:id="@+id/switch11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -370,7 +370,7 @@
                             android:text="Diseño de bodegas/Centro de distribución" />
 
                         <Switch
-                            android:id="@+id/disenoBodegasCentroDistribucionSwitch"
+                            android:id="@+id/switch12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
