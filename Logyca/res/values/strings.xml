@@ -59,5 +59,7 @@
     <string name="enviar_mensaje">Enviar mensaje</string>
     <string name="Expertos">Expertos</string>
     <string name="Top10">Top10</string>
-
+    <string name="ConfigurarIntereses">Configurar Intereses</string>
+	<string name="title_activity_intereses">Configurar intereses</string>
+	<string name="intereses">Intereses</string>
 </resources>

@@ -109,6 +109,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.Top10),
                         getString(R.string.NFC_reader_tittle),
                         getString(R.string.qr_tittle),
+                        getString(R.string.ConfigurarIntereses),
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

@@ -103,6 +103,11 @@ public class MainActivity extends Activity
             	i = new Intent(MainActivity.this, QRReaderActivity.class );
     			startActivity(i);
                 break; 	
+            case 8:
+            	nuevo = PlaceholderFragment.newInstance(position+1);
+            	i = new Intent(MainActivity.this, InteresesActivity.class );
+    			startActivity(i);
+                break; 	
             default:
                 nuevo = PlaceholderFragment.newInstance(position+1);
                 break;
@@ -136,6 +141,8 @@ public class MainActivity extends Activity
                 break;
             case 6:
                 mTitle = getString(R.string.Top10);
+            case 7:
+                mTitle = getString(R.string.ConfigurarIntereses);
                 break;
         }
     }
